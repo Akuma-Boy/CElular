@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 8558923895560757385}
   - component: {fileID: 1878375300987004083}
+  - component: {fileID: -7298924570291648603}
   - component: {fileID: -5958621131221745350}
   - component: {fileID: 783089492917868190}
   - component: {fileID: -6739595504333096170}
   - component: {fileID: -8991928804652743844}
   - component: {fileID: -4034379416413013241}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: enemy
   m_TagString: Inimigo
   m_Icon: {fileID: 0}
@@ -92,6 +93,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-7298924570291648603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2721646422547204099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8feb0434ce65851469d10ab980c5bcd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidade: 1.3017771
 --- !u!114 &-5958621131221745350
 MonoBehaviour:
   m_ObjectHideFlags: 0

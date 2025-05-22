@@ -2,26 +2,51 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [Header("Configurações de Spawn")]
-    public GameObject[] prefabsParaSpawnar; // Array de prefabs que podem ser spawnados
-    public float intervaloDeSpawn = 2f; // Tempo entre cada spawn
-    public int spawnSimultaneo = 1; // Quantos objetos spawnar de cada vez
-    public float areaSpawn = 5f; // Área em torno do objeto onde pode spawnar
+    [Header("ConfiguraÃ§Ãµes de Spawn")]
+    public GameObject[] prefabsParaSpawnar;
+    public float[] porcentagensSpawn; // Porcentagens para cada prefab (exceto o primeiro)
+    public float intervaloDeSpawn = 2f;
+    public int spawnSimultaneo = 1;
+    public float margemDireita = 1f;
+    public float variacaoVertical = 3f;
 
-    [Header("Configurações Avançadas")]
+    [Header("ConfiguraÃ§Ãµes AvanÃ§adas")]
     public bool spawnAoIniciar = true;
     public bool spawnContinuo = true;
-    public bool spawnAleatorio = true;
 
     private float tempoProximoSpawn;
+    private Camera mainCamera;
 
     private void Start()
     {
+        mainCamera = Camera.main;
         tempoProximoSpawn = Time.time + intervaloDeSpawn;
+
+        // Garante que o array de porcentagens tem o tamanho correto
+        if (porcentagensSpawn == null || porcentagensSpawn.Length != Mathf.Max(0, prefabsParaSpawnar.Length - 1))
+        {
+            ResetarPorcentagens();
+        }
 
         if (spawnAoIniciar)
         {
             SpawnarObjetos();
+        }
+    }
+
+    private void ResetarPorcentagens()
+    {
+        if (prefabsParaSpawnar == null || prefabsParaSpawnar.Length <= 1)
+        {
+            porcentagensSpawn = new float[0];
+            return;
+        }
+
+        porcentagensSpawn = new float[prefabsParaSpawnar.Length - 1];
+        float porcentagemPadrao = 1f / (prefabsParaSpawnar.Length - 1);
+        for (int i = 0; i < porcentagensSpawn.Length; i++)
+        {
+            porcentagensSpawn[i] = porcentagemPadrao;
         }
     }
 
@@ -38,41 +63,78 @@ public class Spawner : MonoBehaviour
     {
         if (prefabsParaSpawnar == null || prefabsParaSpawnar.Length == 0)
         {
-            Debug.LogError("Nenhum prefab atribuído para spawn!");
+            Debug.LogWarning("Nenhum prefab atribuÃ­do para spawn!");
             return;
         }
 
         for (int i = 0; i < spawnSimultaneo; i++)
         {
-            // Seleciona prefab aleatório ou o primeiro
-            GameObject prefab = spawnAleatorio ?
-                prefabsParaSpawnar[Random.Range(0, prefabsParaSpawnar.Length)] :
-                prefabsParaSpawnar[0];
-
-            // Calcula posição aleatória
-            Vector3 posicaoSpawn = transform.position + new Vector3(
-                Random.Range(-areaSpawn, areaSpawn),
-                Random.Range(-areaSpawn, areaSpawn),
-                0);
-
-            // Instancia o objeto
-            Instantiate(prefab, posicaoSpawn, Quaternion.identity);
+            SpawnarInimigo();
         }
     }
 
-    // Método para spawnar um prefab específico pelo índice
-    public void SpawnarPrefabEspecifico(int indice)
+    private void SpawnarInimigo()
     {
-        if (indice >= 0 && indice < prefabsParaSpawnar.Length)
-        {
-            Instantiate(prefabsParaSpawnar[indice], transform.position, Quaternion.identity);
-        }
+        GameObject prefab = SelecionarPrefab();
+        Vector3 posicaoSpawn = CalcularPosicaoDireita();
+        Instantiate(prefab, posicaoSpawn, Quaternion.identity);
     }
 
-    // Visualização da área de spawn no Editor
+    private GameObject SelecionarPrefab()
+    {
+        // Primeiro prefab tem 100% de chance se for o Ãºnico
+        if (prefabsParaSpawnar.Length == 1)
+            return prefabsParaSpawnar[0];
+
+        // Calcula chance total para prefabs adicionais
+        float chanceTotal = 0f;
+        for (int i = 0; i < porcentagensSpawn.Length; i++)
+        {
+            chanceTotal += porcentagensSpawn[i];
+        }
+
+        // Normaliza as porcentagens
+        float randomValue = Random.Range(0f, chanceTotal);
+        float acumulado = 0f;
+
+        for (int i = 0; i < porcentagensSpawn.Length; i++)
+        {
+            acumulado += porcentagensSpawn[i];
+            if (randomValue <= acumulado)
+            {
+                return prefabsParaSpawnar[i + 1]; // +1 porque o primeiro Ã© fixo
+            }
+        }
+
+        // Fallback (nunca deve acontecer se as porcentagens estiverem corretas)
+        return prefabsParaSpawnar[0];
+    }
+
+    private Vector3 CalcularPosicaoDireita()
+    {
+        // Calcula posiÃ§Ã£o fora da tela Ã  direita
+        float posicaoY = Random.Range(0f, 1f); // PosiÃ§Ã£o vertical aleatÃ³ria
+        Vector3 viewportPos = new Vector3(1 + margemDireita, posicaoY, 0);
+        Vector3 worldPos = mainCamera.ViewportToWorldPoint(viewportPos);
+        
+        // Adiciona variaÃ§Ã£o vertical
+        worldPos.y += Random.Range(-variacaoVertical, variacaoVertical);
+        worldPos.z = 0;
+        
+        return worldPos;
+    }
+
     private void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireCube(transform.position, new Vector3(areaSpawn * 2, areaSpawn * 2, 0));
+        if (mainCamera == null)
+            mainCamera = Camera.main;
+
+        if (mainCamera != null)
+        {
+            Vector3 spawnPoint = CalcularPosicaoDireita();
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(spawnPoint, 0.5f);
+            Gizmos.DrawLine(spawnPoint, spawnPoint + Vector3.left * 2f);
+        }
     }
 }
