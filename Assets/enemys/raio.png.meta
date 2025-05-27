@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 8d8f4f76249f0d04cb1927ffe79f4d89
+guid: a1a6bdeff3cfd9a428386d746368be0a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 615169607677400109
-    second: projetil3_0
+      213: 1150196622028393380
+    second: raio_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -109,30 +109,17 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: projetil3_0
+      name: raio_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 29
-        width: 38
-        height: 38
+        x: 2
+        y: 7
+        width: 126
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d245a36bf75898800800000000000000
-      internalID: 615169607677400109
+      spriteID: 4ab4bd5dbb156ff00800000000000000
+      internalID: 1150196622028393380
       vertices: []
       indices: 
       edges: []
@@ -160,8 +147,7 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable:
-      projetil3_0: 615169607677400109
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

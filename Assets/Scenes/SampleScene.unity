@@ -150,10 +150,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabsParaSpawnar:
   - {fileID: 2721646422547204099, guid: 84bb1581e7130a94f89ebae8531d13f5, type: 3}
+  - {fileID: 2721646422547204099, guid: 6108be9a543c89f4db60108b01b3ee37, type: 3}
   porcentagensSpawn: []
   intervaloDeSpawn: 3
   spawnSimultaneo: 4
-  margemDireita: 0.21
+  margemDireita: -0.01
   variacaoVertical: 0.5
   spawnAoIniciar: 0
   spawnContinuo: 1
@@ -679,11 +680,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabsParaSpawnar:
-  - {fileID: 2721646422547204099, guid: 84bb1581e7130a94f89ebae8531d13f5, type: 3}
+  - {fileID: 2721646422547204099, guid: 6108be9a543c89f4db60108b01b3ee37, type: 3}
   porcentagensSpawn: []
   intervaloDeSpawn: 0.5
   spawnSimultaneo: 2
-  margemDireita: 0.16
+  margemDireita: 0.01
   variacaoVertical: 0.5
   spawnAoIniciar: 0
   spawnContinuo: 1
@@ -789,10 +790,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefabsParaSpawnar:
   - {fileID: 2721646422547204099, guid: 84bb1581e7130a94f89ebae8531d13f5, type: 3}
+  - {fileID: 2710874731323103673, guid: 898e842d4ef8d0342a0fc46f7bef5759, type: 3}
   porcentagensSpawn: []
   intervaloDeSpawn: 2
   spawnSimultaneo: 1
-  margemDireita: 0.14
+  margemDireita: 0
   variacaoVertical: 1
   spawnAoIniciar: 0
   spawnContinuo: 1
@@ -846,8 +848,8 @@ MonoBehaviour:
   porcentagensSpawn: []
   intervaloDeSpawn: 1
   spawnSimultaneo: 1
-  margemDireita: 0.16
-  variacaoVertical: 0.5
+  margemDireita: 0.01
+  variacaoVertical: 0.38
   spawnAoIniciar: 1
   spawnContinuo: 1
 --- !u!4 &1936700804
