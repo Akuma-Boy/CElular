@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: -7298924570291648603}
   - component: {fileID: -5958621131221745350}
   - component: {fileID: 783089492917868190}
-  - component: {fileID: -6739595504333096170}
   - component: {fileID: -8991928804652743844}
   - component: {fileID: -4034379416413013241}
   m_Layer: 7
@@ -33,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.846599, y: 2.0748272, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -105,7 +104,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8feb0434ce65851469d10ab980c5bcd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidade: 2.2536304
+  velocidade: 2.0988252
 --- !u!114 &-5958621131221745350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efce638627ea1aa419415020e0c423e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaMaxima: 3
+  vidaMaxima: 1
   vidaAtual: 0
   invencivel: 0
   tempoInvencibilidade: 0
@@ -150,21 +149,6 @@ MonoBehaviour:
       m_Calls: []
   corDano: {r: 1, g: 0, b: 0, a: 1}
   tempoFlash: 0.1
---- !u!114 &-6739595504333096170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2721646422547204099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 763333076816a40499d1b8cc56d14214, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  velocidade: 5
-  destruirQuandoSairDaTela: 1
-  tempoDeVida: 10
 --- !u!50 &-8991928804652743844
 Rigidbody2D:
   serializedVersion: 5
@@ -226,7 +210,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.005576611, y: -0.005576685}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -236,5 +220,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.3196545, y: 0.3308078}
   m_EdgeRadius: 0
