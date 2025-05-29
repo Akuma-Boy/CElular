@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -3267602902298131887}
   - component: {fileID: 7158635601846552290}
   - component: {fileID: -4192465999874010561}
+  - component: {fileID: 5266106996276131053}
   m_Layer: 0
   m_Name: projetil2_0
   m_TagString: Untagged
@@ -153,3 +154,15 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.89, y: 0.89}
   m_EdgeRadius: 0
+--- !u!114 &5266106996276131053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 457159860163198736}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5355095207fbab4d9cbd7c9aae88474, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

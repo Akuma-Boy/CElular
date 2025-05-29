@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: -4291264060307326581}
   - component: {fileID: 1178251282040706696}
   - component: {fileID: 936828665841965097}
+  - component: {fileID: 7155403982590801039}
   m_Layer: 0
   m_Name: projetil3_0
-  m_TagString: Untagged
+  m_TagString: Inimigo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -196,3 +197,30 @@ MonoBehaviour:
   velocidade: 10
   tempoVida: 3
   dano: 1
+--- !u!114 &7155403982590801039
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4125746518858213129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efce638627ea1aa419415020e0c423e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidaMaxima: 1
+  vidaAtual: 0
+  invencivel: 0
+  tempoInvencibilidade: 0.5
+  aoReceberDano:
+    m_PersistentCalls:
+      m_Calls: []
+  aoMorrer:
+    m_PersistentCalls:
+      m_Calls: []
+  aoCurar:
+    m_PersistentCalls:
+      m_Calls: []
+  corDano: {r: 1, g: 0, b: 0, a: 1}
+  tempoFlash: 0.1

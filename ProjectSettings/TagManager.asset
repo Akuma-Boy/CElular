@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Inimigo
+  - shot
   layers:
   - Default
   - TransparentFX

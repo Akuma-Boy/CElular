@@ -21,12 +21,16 @@ public class NaveController : MonoBehaviour
     private Vector2 screenBounds;
     private float objectWidth;
     private float objectHeight;
+    public TiroMultiplo tiroMultiplo;
 
     private void Start()
     {
         screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
         objectWidth = GetComponent<SpriteRenderer>().bounds.extents.x;
         objectHeight = GetComponent<SpriteRenderer>().bounds.extents.y;
+
+        if (tiroMultiplo == null)
+            tiroMultiplo = GetComponent<TiroMultiplo>();
 
         // Cria firePoint automaticamente se não existir
         if (firePoint == null)
@@ -101,23 +105,10 @@ public class NaveController : MonoBehaviour
 
     private void Shoot()
     {
-        if (projectilePrefab == null)
+        if (tiroMultiplo != null)
         {
-            Debug.LogError("Prefab do projétil não atribuído!");
-            return;
+            tiroMultiplo.Atirar();
         }
-
-        GameObject projectile = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
-
-        Rigidbody2D rb = projectile.GetComponent<Rigidbody2D>();
-        if (rb == null)
-        {
-            Debug.LogError("Projétil não tem Rigidbody2D!");
-            return;
-        }
-
-        rb.linearVelocity = Vector2.right * projectileSpeed;
-        Destroy(projectile, 3f);
     }
 
     private void OnDrawGizmosSelected()

@@ -3,39 +3,52 @@
   "WorkspaceRootPath": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|c:\\users\\matutino\\documents\\github\\celular\\assets\\enemys\\raioexpansivo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\enemys\\raioexpansivo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|c:\\users\\matutino\\documents\\github\\celular\\assets\\player\\projetildano.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\player\\projetildano.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|c:\\users\\matutino\\documents\\github\\celular\\assets\\player\\navecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\player\\navecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\assets\\player\\vidanave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\player\\vidanave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|c:\\users\\matutino\\documents\\github\\celular\\assets\\enemys\\inimigoatirador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\enemys\\inimigoatirador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\assets\\player\\multimissilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\player\\multimissilcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\assets\\player\\projetildano.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\player\\projetildano.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\assets\\player\\missilguiado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\player\\missilguiado.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\assets\\enemys\\inimigodanocontato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\enemys\\inimigodanocontato.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\assets\\player\\cooldownui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\player\\cooldownui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\assets\\player\\navecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\player\\navecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\assets\\player\\barradevidaui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\player\\barradevidaui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\assets\\enemys\\vidainimigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\enemys\\vidainimigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\assets\\enemys\\enemypoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\enemys\\enemypoints.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\assets\\scripts\\spawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\spawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\assets\\scripts\\dificuldadeprogressiva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\dificuldadeprogressiva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Matutino\\Documents\\GitHub\\Matutino\\CElular\\Assets\\enemys\\InimigoNavinha.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\assets\\scripts\\scoreovertime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scoreovertime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|c:\\users\\matutino\\documents\\github\\celular\\assets\\player\\pickupmultiplicador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\player\\pickupmultiplicador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\assets\\player\\tiromultiplocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:assets\\player\\tiromultiplocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -45,7 +58,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -53,115 +66,150 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ScoreOverTime.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\ScoreOverTime.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\ScoreOverTime.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\ScoreOverTime.cs",
+              "RelativeToolTip": "Assets\\scripts\\ScoreOverTime.cs",
+              "ViewState": "AQIAACsAAAAAAAAAAAA9wEkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T11:39:55.8Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "RaioExpansivo.cs",
-              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\enemys\\RaioExpansivo.cs",
-              "RelativeDocumentMoniker": "Assets\\enemys\\RaioExpansivo.cs",
-              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\enemys\\RaioExpansivo.cs",
-              "RelativeToolTip": "Assets\\enemys\\RaioExpansivo.cs",
-              "ViewState": "AQIAALcAAAAAAAAAAAAiwMwAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-27T13:21:04.762Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "InimigoAtirador.cs",
-              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\enemys\\InimigoAtirador.cs",
-              "RelativeDocumentMoniker": "Assets\\enemys\\InimigoAtirador.cs",
-              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\enemys\\InimigoAtirador.cs",
-              "RelativeToolTip": "Assets\\enemys\\InimigoAtirador.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAADYAAAAXAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-27T13:12:43.254Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "InimigoNavinha.cs",
-              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\Matutino\\CElular\\Assets\\enemys\\InimigoNavinha.cs",
-              "RelativeDocumentMoniker": "..\\Matutino\\CElular\\Assets\\enemys\\InimigoNavinha.cs",
-              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\Matutino\\CElular\\Assets\\enemys\\InimigoNavinha.cs",
-              "RelativeToolTip": "..\\Matutino\\CElular\\Assets\\enemys\\InimigoNavinha.cs",
-              "ViewState": "AQIAACQAAAAAAAAAAAAowDkAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-22T12:13:15.786Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "InimigoDanoContato.cs",
-              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\enemys\\InimigoDanoContato.cs",
-              "RelativeDocumentMoniker": "Assets\\enemys\\InimigoDanoContato.cs",
-              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\enemys\\InimigoDanoContato.cs",
-              "RelativeToolTip": "Assets\\enemys\\InimigoDanoContato.cs",
-              "ViewState": "AQIAABMAAAAAAAAAAAAgwFIAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-22T13:01:56.722Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "VidaNave.cs",
-              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\VidaNave.cs",
-              "RelativeDocumentMoniker": "Assets\\player\\VidaNave.cs",
-              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\VidaNave.cs",
-              "RelativeToolTip": "Assets\\player\\VidaNave.cs",
-              "ViewState": "AQIAAEsAAAAAAAAAAAAAwGUAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-22T12:52:39.811Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "NaveController.cs",
-              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\NaveController.cs",
-              "RelativeDocumentMoniker": "Assets\\player\\NaveController.cs",
-              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\NaveController.cs",
-              "RelativeToolTip": "Assets\\player\\NaveController.cs",
-              "ViewState": "AQIAAF8AAAAAAAAAAAAAwIIAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-22T11:37:39.529Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "ProjetilDano.cs",
               "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\ProjetilDano.cs",
               "RelativeDocumentMoniker": "Assets\\player\\ProjetilDano.cs",
               "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\ProjetilDano.cs",
               "RelativeToolTip": "Assets\\player\\ProjetilDano.cs",
-              "ViewState": "AQIAABwAAAAAAAAAAAAmwD4AAAABAAAA",
+              "ViewState": "AQIAACIAAAAAAAAAAAAgwD4AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-22T12:26:29.883Z"
+              "WhenOpened": "2025-05-29T13:09:51.286Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "NaveController.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\NaveController.cs",
+              "RelativeDocumentMoniker": "Assets\\player\\NaveController.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\NaveController.cs",
+              "RelativeToolTip": "Assets\\player\\NaveController.cs",
+              "ViewState": "AQIAAGYAAAAAAAAAAAAgwHsAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T13:01:27.811Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "PickupMultiplicador.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\PickupMultiplicador.cs",
+              "RelativeDocumentMoniker": "Assets\\player\\PickupMultiplicador.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\PickupMultiplicador.cs",
+              "RelativeToolTip": "Assets\\player\\PickupMultiplicador.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T13:05:37.196Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "VidaNave.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\VidaNave.cs",
+              "RelativeDocumentMoniker": "Assets\\player\\VidaNave.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\VidaNave.cs",
+              "RelativeToolTip": "Assets\\player\\VidaNave.cs",
+              "ViewState": "AQIAAFIAAAAAAAAAAAAiwF4AAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T12:22:23.377Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "TiroMultiploController.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\TiroMultiploController.cs",
+              "RelativeDocumentMoniker": "Assets\\player\\TiroMultiploController.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\TiroMultiploController.cs",
+              "RelativeToolTip": "Assets\\player\\TiroMultiploController.cs",
+              "ViewState": "AQIAAA8AAAAAAAAAAAAAABwAAAAsAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T13:04:20.679Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "MissilGuiado.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\MissilGuiado.cs",
+              "RelativeDocumentMoniker": "Assets\\player\\MissilGuiado.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\MissilGuiado.cs",
+              "RelativeToolTip": "Assets\\player\\MissilGuiado.cs",
+              "ViewState": "AQIAABUAAAAAAAAAAAAowC0AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T12:37:09.26Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "CoolDownUI.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\CoolDownUI.cs",
+              "RelativeDocumentMoniker": "Assets\\player\\CoolDownUI.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\CoolDownUI.cs",
+              "RelativeToolTip": "Assets\\player\\CoolDownUI.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T12:34:03.215Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MultiMissilController.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\MultiMissilController.cs",
+              "RelativeDocumentMoniker": "Assets\\player\\MultiMissilController.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\MultiMissilController.cs",
+              "RelativeToolTip": "Assets\\player\\MultiMissilController.cs",
+              "ViewState": "AQIAABYAAAAAAAAAAAAowDoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T12:32:06.001Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "VidaInimigo.cs",
-              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\enemys\\VidaInimigo.cs",
-              "RelativeDocumentMoniker": "Assets\\enemys\\VidaInimigo.cs",
-              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\enemys\\VidaInimigo.cs",
-              "RelativeToolTip": "Assets\\enemys\\VidaInimigo.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGQAAAABAAAA",
+              "Title": "BarraDeVidaUI.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\BarraDeVidaUI.cs",
+              "RelativeDocumentMoniker": "Assets\\player\\BarraDeVidaUI.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\player\\BarraDeVidaUI.cs",
+              "RelativeToolTip": "Assets\\player\\BarraDeVidaUI.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAIwB8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-22T12:22:17.867Z"
+              "WhenOpened": "2025-05-29T12:23:52.303Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "Spawner.cs",
-              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\Spawner.cs",
-              "RelativeDocumentMoniker": "Assets\\scripts\\Spawner.cs",
-              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\Spawner.cs",
-              "RelativeToolTip": "Assets\\scripts\\Spawner.cs",
-              "ViewState": "AQIAACoAAAAAAAAAAAAAwE0AAAABAAAA",
+              "Title": "EnemyPoints.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\enemys\\EnemyPoints.cs",
+              "RelativeDocumentMoniker": "Assets\\enemys\\EnemyPoints.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\enemys\\EnemyPoints.cs",
+              "RelativeToolTip": "Assets\\enemys\\EnemyPoints.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-22T11:59:06.002Z"
+              "WhenOpened": "2025-05-29T11:40:42.984Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "DificuldadeProgressiva.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\DificuldadeProgressiva.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\DificuldadeProgressiva.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\DificuldadeProgressiva.cs",
+              "RelativeToolTip": "Assets\\scripts\\DificuldadeProgressiva.cs",
+              "ViewState": "AQIAAKIAAAAAAAAAAAAwwLIAAAAwAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-29T11:41:51.098Z"
             }
           ]
         }

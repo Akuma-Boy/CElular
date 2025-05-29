@@ -20,9 +20,12 @@ public class VidaNave : MonoBehaviour
     [SerializeField] private Color corDano = Color.red;
     [SerializeField] private float tempoFlash = 0.1f;
     private Color corOriginal;
+    private TiroMultiplo tiroMultiplo;
 
     private void Awake()
     {
+
+        tiroMultiplo = GetComponent<TiroMultiplo>();
         vidaAtual = vidaMaxima;
 
         if (spriteRenderer == null)
@@ -38,11 +41,17 @@ public class VidaNave : MonoBehaviour
 
     public void ReceberDano(int quantidade)
     {
+
+
+
         if (invencivel || Time.time < tempoUltimoDano + tempoInvencibilidade)
             return;
 
         vidaAtual -= quantidade;
         tempoUltimoDano = Time.time;
+
+        if (tiroMultiplo != null)
+            tiroMultiplo.ReduzirTiro();
 
         // Feedback visual
         if (spriteRenderer != null)

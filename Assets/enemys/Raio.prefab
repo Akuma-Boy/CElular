@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 653565756713566860}
   - component: {fileID: 3447757088186326488}
   - component: {fileID: 6405007734161902748}
+  - component: {fileID: 6655018825567547328}
   m_Layer: 7
   m_Name: Raio
   m_TagString: Inimigo
@@ -115,8 +116,8 @@ MonoBehaviour:
   tempoVidaSegmento: 5
   spriteRendererRaio: {fileID: 7668464411977823276}
   hitboxRaio: {fileID: 653565756713566860}
-  efeitoInicio: {fileID: 5029974432988318471, guid: e77f1a6862529024fbc6481441b02179, type: 3}
-  efeitoFim: {fileID: 5029974432988318471, guid: e77f1a6862529024fbc6481441b02179, type: 3}
+  efeitoInicio: {fileID: 2035530410816379104, guid: e77f1a6862529024fbc6481441b02179, type: 3}
+  efeitoFim: {fileID: 2035530410816379104, guid: e77f1a6862529024fbc6481441b02179, type: 3}
 --- !u!61 &653565756713566860
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -207,3 +208,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6655018825567547328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2828004250021814811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430408cceaaefb845a2f4836b427a8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidade: 1
+  tempoVida: 2
+  dano: 3

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 783089492917868190}
   - component: {fileID: -8991928804652743844}
   - component: {fileID: -4034379416413013241}
+  - component: {fileID: 7957994505549120149}
   m_Layer: 7
   m_Name: enemy 1
   m_TagString: Inimigo
@@ -104,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8feb0434ce65851469d10ab980c5bcd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidade: 2.0988252
+  velocidade: 1.812763
 --- !u!114 &-5958621131221745350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -222,3 +223,16 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.6781914, y: 0.579861}
   m_EdgeRadius: 0
+--- !u!114 &7957994505549120149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2721646422547204099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ddac083b25ff9346a8ee03d67a0f978, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pointsWhenDestroyed: 20
