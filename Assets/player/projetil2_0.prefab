@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 7158635601846552290}
   - component: {fileID: -4192465999874010561}
   - component: {fileID: 5266106996276131053}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: projetil2_0
-  m_TagString: Untagged
+  m_TagString: shot
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
