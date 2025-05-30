@@ -31,23 +31,39 @@ public class MultiMissilController : MonoBehaviour
         GameObject[] inimigos = GameObject.FindGameObjectsWithTag("Inimigo");
         if (inimigos.Length == 0) return;
 
-        List<GameObject> alvos = new List<GameObject>();
-        for (int i = 0; i < Mathf.Min(4, inimigos.Length); i++)
+        // Filtra os inimigos que estão à direita do ponto de disparo
+        List<GameObject> inimigosADireita = new List<GameObject>();
+        foreach (GameObject inimigo in inimigos)
         {
-            GameObject inimigoAleatorio;
-            do
+            if (inimigo != null && inimigo.transform.position.x > transform.position.x)
             {
-                inimigoAleatorio = inimigos[Random.Range(0, inimigos.Length)];
-            } while (alvos.Contains(inimigoAleatorio) && inimigos.Length > alvos.Count);
-
-            alvos.Add(inimigoAleatorio);
+                inimigosADireita.Add(inimigo);
+            }
         }
 
-        foreach (GameObject alvo in alvos)
+        if (inimigosADireita.Count == 0) return;
+
+        // Seleciona até 4 alvos únicos
+        List<GameObject> alvosSelecionados = new List<GameObject>();
+        int quantidadeDeMisseis = Mathf.Min(4, inimigosADireita.Count);
+        List<int> indicesUsados = new List<int>();
+
+        while (alvosSelecionados.Count < quantidadeDeMisseis)
+        {
+            int index = Random.Range(0, inimigosADireita.Count);
+            if (!indicesUsados.Contains(index))
+            {
+                indicesUsados.Add(index);
+                alvosSelecionados.Add(inimigosADireita[index]);
+            }
+        }
+
+        foreach (GameObject alvo in alvosSelecionados)
         {
             CriarMissil(alvo);
         }
     }
+
 
     private void CriarMissil(GameObject alvo)
     {

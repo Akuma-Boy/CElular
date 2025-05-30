@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class DificuldadeProgressiva : MonoBehaviour
 {
@@ -183,8 +184,54 @@ public class DificuldadeProgressiva : MonoBehaviour
     {
         tempoDecorrido = 0f;
         progresso = 0f;
-        AtualizarDificuldade();
+
+        // Aplica manualmente os valores mínimos
+        AplicarValoresMinimos();
+
+        // Destroi todos os inimigos e projéteis (ajuste as tags conforme necessário)
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Inimigo"))
+        {
+            Destroy(obj);
+        }
+
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Projetil"))
+        {
+            Destroy(obj);
+        }
     }
+
+    private void AplicarValoresMinimos()
+    {
+        foreach (var spawner in spawners)
+        {
+            if (spawner == null) continue;
+            spawner.ResetarEstado(intervaloMaximo, quantidadeMinima);
+
+            if (aumentarVelocidadeInimigos)
+            {
+                foreach (var prefab in spawner.prefabsParaSpawnar)
+                {
+                    var movimento = prefab.GetComponent<MovimentoInimigo>();
+                    if (movimento != null)
+                        movimento.velocidade = velocidadeMinima;
+
+                    var rb = prefab.GetComponent<Rigidbody2D>();
+                    if (rb != null)
+                        rb.linearVelocity = new Vector2(-velocidadeMinima, 0);
+                }
+            }
+        }
+
+
+        if (aumentarVelocidadeParallax)
+        {
+            foreach (var layer in parallaxLayers)
+            {
+                layer?.SetCurrentSpeed(parallaxVelocidadeMinima);
+            }
+        }
+    }
+
 
     public float GetIntervaloSpawnAtual() => Mathf.Lerp(intervaloMaximo, intervaloMinimo, progresso);
     public float GetVelocidadeInimigosAtual() => Mathf.Lerp(velocidadeMinima, velocidadeMaxima, progresso);

@@ -19,8 +19,9 @@ public class MissilGuiado : MonoBehaviour
 
     private void Update()
     {
-        if (alvo == null || !alvo.activeInHierarchy)
+        if (alvo == null || !alvo.activeInHierarchy || alvo.transform.position.x < transform.position.x)
         {
+            // Vai em linha reta se não houver alvo válido ou alvo foi para trás
             transform.Translate(Vector2.right * velocidade * Time.deltaTime);
             return;
         }
@@ -34,6 +35,7 @@ public class MissilGuiado : MonoBehaviour
 
         transform.Translate(Vector2.right * velocidade * Time.deltaTime);
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

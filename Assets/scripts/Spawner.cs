@@ -137,4 +137,12 @@ public class Spawner : MonoBehaviour
             Gizmos.DrawLine(spawnPoint, spawnPoint + Vector3.left * 2f);
         }
     }
+    public void ResetarEstado(float intervalo, int quantidade)
+    {
+        intervaloDeSpawn = intervalo;
+        spawnSimultaneo = quantidade;
+        tempoProximoSpawn = Time.time + intervalo; // Reinicia o contador corretamente
+    }
+
+
 }

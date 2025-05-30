@@ -107,7 +107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidade: 10
-  distancia: 80
+  distancia: 30
   comecarNaDireita: 0
 --- !u!114 &4506017893497444715
 MonoBehaviour:
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0431584592958640b5db642b1c422dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dano: 1
+  dano: 5
   tempoEntreDanos: 1
   destruirAoColidir: 1
   efeitoImpacto: {fileID: 0}

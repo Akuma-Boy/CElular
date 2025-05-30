@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1178251282040706696}
   - component: {fileID: 936828665841965097}
   - component: {fileID: 7155403982590801039}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: projetil3_0
   m_TagString: Inimigo
   m_Icon: {fileID: 0}
