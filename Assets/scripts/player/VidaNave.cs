@@ -1,9 +1,10 @@
 using UnityEngine;
 using UnityEngine.Events;
+using System.Collections;
 
 public class VidaNave : MonoBehaviour
 {
-    [Header("Configurações de Vida")]
+    [Header("ConfiguraÃ§Ãµes de Vida")]
     [SerializeField] private int vidaMaxima = 3;
     [SerializeField] private int vidaAtual;
     [SerializeField] private float tempoInvencibilidade = 1.5f;
@@ -24,10 +25,8 @@ public class VidaNave : MonoBehaviour
 
     private void Awake()
     {
-
         tiroMultiplo = GetComponent<TiroMultiplo>();
-        vidaAtual = vidaMaxima;
-
+        
         if (spriteRenderer == null)
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
@@ -37,13 +36,42 @@ public class VidaNave : MonoBehaviour
         {
             corOriginal = spriteRenderer.color;
         }
+
+        if (aoReceberDano == null) aoReceberDano = new UnityEvent();
+        if (aoMorrer == null) aoMorrer = new UnityEvent();
+        if (aoCurar == null) aoCurar = new UnityEvent();
+    }
+
+    private void OnEnable()
+    {
+        ResetVida();
+        Debug.Log("VidaNave: OnEnable chamou ResetVida(). Vida atual: " + vidaAtual);
+    }
+
+    public void ResetVida()
+    {
+        vidaAtual = vidaMaxima;
+        invencivel = false;
+        tempoUltimoDano = 0f;
+
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.enabled = true;
+            spriteRenderer.color = corOriginal;
+        }
+        
+        gameObject.SetActive(true);
+
+        if (tiroMultiplo != null)
+        {
+            tiroMultiplo.ResetTiro();
+        }
+
+        Debug.Log("VidaNave: Vida resetada para " + vidaAtual);
     }
 
     public void ReceberDano(int quantidade)
     {
-
-
-
         if (invencivel || Time.time < tempoUltimoDano + tempoInvencibilidade)
             return;
 
@@ -53,7 +81,6 @@ public class VidaNave : MonoBehaviour
         if (tiroMultiplo != null)
             tiroMultiplo.ReduzirTiro();
 
-        // Feedback visual
         if (spriteRenderer != null)
         {
             StartCoroutine(FlashDano());
@@ -71,26 +98,34 @@ public class VidaNave : MonoBehaviour
         }
     }
 
-    private System.Collections.IEnumerator FlashDano()
+    private IEnumerator FlashDano()
     {
-        spriteRenderer.color = corDano;
-        yield return new WaitForSeconds(tempoFlash);
-        spriteRenderer.color = corOriginal;
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.color = corDano;
+            yield return new WaitForSeconds(tempoFlash);
+            spriteRenderer.color = corOriginal;
+        }
     }
 
-    private System.Collections.IEnumerator TemporarioInvencivel()
+    private IEnumerator TemporarioInvencivel()
     {
         invencivel = true;
-
-        // Piscar enquanto invencível
         float tempoFim = Time.time + tempoInvencibilidade;
+        
         while (Time.time < tempoFim)
         {
-            spriteRenderer.enabled = !spriteRenderer.enabled;
+            if (spriteRenderer != null)
+            {
+                spriteRenderer.enabled = !spriteRenderer.enabled;
+            }
             yield return new WaitForSeconds(0.1f);
         }
 
-        spriteRenderer.enabled = true;
+        if (spriteRenderer != null)
+        {
+            spriteRenderer.enabled = true;
+        }
         invencivel = false;
     }
 
@@ -98,18 +133,27 @@ public class VidaNave : MonoBehaviour
     {
         vidaAtual = Mathf.Min(vidaAtual + quantidade, vidaMaxima);
         aoCurar.Invoke();
+        Debug.Log("VidaNave: Vida curada para " + vidaAtual);
     }
 
     public void Morrer()
     {
+        if (vidaAtual > 0) return; // Evita chamadas redundantes
+        Debug.Log("VidaNave: Morrer() chamado. Vida atual: " + vidaAtual);
         vidaAtual = 0;
         aoMorrer.Invoke();
-
-        // Desativa a nave (você pode substituir por lógica de game over)
-        gameObject.SetActive(false);
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameOver();
+            Debug.Log("VidaNave: GameManager.GameOver chamado.");
+        }
+        else
+        {
+            Debug.LogError("VidaNave: GameManager.Instance nÃ£o encontrado!");
+            gameObject.SetActive(false);
+        }
     }
 
-    // Métodos úteis
     public bool EstaMorto() => vidaAtual <= 0;
     public float PorcentagemVida() => (float)vidaAtual / vidaMaxima;
     public int GetVidaAtual() => vidaAtual;

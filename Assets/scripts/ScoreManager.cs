@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
+using UnityEngine.UI; // Para Text (ou use TMPro para TextMeshProUGUI)
+// using TMPro;
+using System.Linq; // Adicionado para suportar OrderByDescending e Take
 
 public class ScoreManager : MonoBehaviour
 {
@@ -8,6 +10,8 @@ public class ScoreManager : MonoBehaviour
 
     private const string ScoreKey = "HighScores";
     private List<ScoreEntry> scoreList = new();
+    public int CurrentGameScore { get; private set; }
+    [SerializeField] private Text scoreText; // Ou TextMeshProUGUI
 
     private void Awake()
     {
@@ -16,11 +20,24 @@ public class ScoreManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(gameObject);
             LoadScores();
+            ResetCurrentGameScore();
+            Debug.Log("ScoreManager: Inicializado com sucesso.");
         }
         else
         {
+            Debug.LogWarning("ScoreManager: Instância duplicada destruída.");
             Destroy(gameObject);
         }
+    }
+
+    private void OnEnable()
+    {
+        GameManager.OnGameStart += ResetCurrentGameScore;
+    }
+
+    private void OnDisable()
+    {
+        GameManager.OnGameStart -= ResetCurrentGameScore;
     }
 
     [System.Serializable]
@@ -39,7 +56,7 @@ public class ScoreManager : MonoBehaviour
     public void AddScore(string nick, int score)
     {
         scoreList.Add(new ScoreEntry(nick, score));
-        scoreList = scoreList.OrderByDescending(s => s.score).Take(10).ToList(); // Top 10
+        scoreList = scoreList.OrderByDescending(s => s.score).Take(10).ToList();
         SaveScores();
     }
 
@@ -65,10 +82,36 @@ public class ScoreManager : MonoBehaviour
     private class ScoreListWrapper
     {
         public List<ScoreEntry> scores;
-
         public ScoreListWrapper(List<ScoreEntry> scores)
         {
             this.scores = scores;
+        }
+    }
+
+    public void AddPoints(int points)
+    {
+        CurrentGameScore += points;
+        UpdateScoreUI();
+        Debug.Log($"ScoreManager: Adicionados {points} pontos. Score atual: {CurrentGameScore}");
+    }
+
+    public void ResetCurrentGameScore()
+    {
+        CurrentGameScore = 0;
+        UpdateScoreUI();
+        Debug.Log("ScoreManager: Score resetado para 0.");
+    }
+
+    private void UpdateScoreUI()
+    {
+        if (scoreText != null)
+        {
+            scoreText.text = CurrentGameScore.ToString();
+            Debug.Log($"ScoreManager: UI atualizada. Score={CurrentGameScore}");
+        }
+        else
+        {
+            Debug.LogWarning("ScoreManager: scoreText não atribuído no Inspector.");
         }
     }
 }

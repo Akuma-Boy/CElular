@@ -1,73 +1,85 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ScoreOverTime : MonoBehaviour
 {
-    public static ScoreOverTime Instance;
+    public static ScoreOverTime Instance { get; private set; }
 
-    [Header("Basic Settings")]
-    public float baseScorePerSecond = 10f;
-    public float difficultyMultiplier = 1.5f;
+    [Header("Configurações de Pontuação por Tempo")]
+    [SerializeField] private float intervaloAdicaoPontos = 1f;
+    [SerializeField] private int pontosPorIntervaloBase = 10;
+    [SerializeField] private int pontosMaximosBonusDificuldade = 50;
+    [SerializeField] private float tempoProximaAdicao;
 
-    [Header("UI References")]
-    public Text scoreText;
-    public Text multiplierText;
-
-    private float currentScore;
-    private float currentMultiplier = 1f;
+    [Header("Referências")]
+    [SerializeField] private ScoreManager scoreManager;
 
     private void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+            Debug.Log("ScoreOverTime: Instância criada.");
         }
         else
         {
+            Debug.LogWarning("ScoreOverTime: Instância duplicada destruída.");
             Destroy(gameObject);
             return;
         }
+
+        if (scoreManager == null)
+        {
+            scoreManager = ScoreManager.Instance;
+            if (scoreManager == null)
+            {
+                Debug.LogError("ScoreOverTime: ScoreManager não encontrado! Desativando script.");
+                enabled = false;
+            }
+            else
+            {
+                Debug.Log("ScoreOverTime: ScoreManager encontrado com sucesso.");
+            }
+        }
     }
 
-    private void Update()
+    private void OnEnable()
     {
-        UpdateScore();
-        UpdateMultiplier();
-        UpdateUI();
+        tempoProximaAdicao = Time.time + intervaloAdicaoPontos;
+        Debug.Log("ScoreOverTime: Ativado. Próxima adição de pontos em: " + tempoProximaAdicao);
     }
 
-    private void UpdateScore()
+    void Update()
     {
-        currentScore += (baseScorePerSecond * currentMultiplier) * Time.deltaTime;
+        if (!GameManager.Instance.IsGameActive || scoreManager == null)
+        {
+            Debug.LogWarning($"ScoreOverTime: Bloqueado. IsGameActive={GameManager.Instance?.IsGameActive}, ScoreManager={(scoreManager != null)}");
+            return;
+        }
+
+        if (Time.time >= tempoProximaAdicao)
+        {
+            AdicionarPontos();
+            tempoProximaAdicao = Time.time + intervaloAdicaoPontos;
+        }
     }
 
-    private void UpdateMultiplier()
+    private void AdicionarPontos()
     {
+        int pontosAtuais = pontosPorIntervaloBase;
+
         if (DificuldadeProgressiva.Instance != null)
         {
-            currentMultiplier = 1 + (DificuldadeProgressiva.Instance.Progresso * (difficultyMultiplier - 1));
+            float progressoDificuldade = DificuldadeProgressiva.Instance.ProgressoNormalizado;
+            int pontosBonus = Mathf.RoundToInt(pontosMaximosBonusDificuldade * progressoDificuldade);
+            pontosAtuais += pontosBonus;
+            Debug.Log($"ScoreOverTime: Progresso Dificuldade: {progressoDificuldade:F2}, Bônus de Pontos: {pontosBonus}");
         }
-    }
-
-    private void UpdateUI()
-    {
-        if (scoreText != null)
+        else
         {
-            scoreText.text = $"Score: {Mathf.FloorToInt(currentScore)}";
+            Debug.LogWarning("ScoreOverTime: DificuldadeProgressiva.Instance não encontrado. Pontos de bônus não aplicados.");
         }
 
-        if (multiplierText != null)
-        {
-            multiplierText.text = $"Multiplier: x{currentMultiplier:F1}";
-        }
+        scoreManager.AddPoints(pontosAtuais);
+        Debug.Log($"ScoreOverTime: Adicionando {pontosAtuais} pontos por tempo. Score total: {scoreManager.CurrentGameScore}");
     }
-
-    public void AddScore(float points)
-    {
-        currentScore += points * currentMultiplier;
-        UpdateUI();
-    }
-
-    public float GetCurrentScore() => currentScore;
-    public float GetCurrentMultiplier() => currentMultiplier;
 }

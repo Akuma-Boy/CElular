@@ -19,19 +19,15 @@ public class TiroMultiplo : MonoBehaviour
     public float recargaPorSegundo = 20f;
     public bool sobrecarregado = false;
     public float limiteMinimoParaDisparo = 20f;
+
+    // Getter para a stamina normalizada
     public float GetStaminaNormalized()
     {
         return Mathf.Clamp01(staminaAtual / staminaMax);
     }
 
-
-
-
     private void Update()
     {
-        
-
-
         // Regeneração da stamina ao longo do tempo
         if (staminaAtual < staminaMax)
         {
@@ -39,17 +35,15 @@ public class TiroMultiplo : MonoBehaviour
             staminaAtual = Mathf.Min(staminaAtual, staminaMax);
         }
 
+        // Reseta o estado de sobrecarregado se a stamina for suficiente
         if (sobrecarregado && staminaAtual >= limiteMinimoParaDisparo)
         {
             sobrecarregado = false;
         }
     }
 
-
-
     public void Atirar()
     {
-
         if (sobrecarregado || staminaAtual < custoPorTiro)
             return;
 
@@ -66,8 +60,8 @@ public class TiroMultiplo : MonoBehaviour
                 break;
 
             case 2:
-                CriarTiro(firePoint.position + Vector3.up * espacamentoVertical, Vector2.right);
-                CriarTiro(firePoint.position + Vector3.down * espacamentoVertical, Vector2.right);
+                CriarTiro(firePoint.position + Vector3.up * espacamentoVertical / 2f, Vector2.right);
+                CriarTiro(firePoint.position + Vector3.down * espacamentoVertical / 2f, Vector2.right);
                 break;
 
             case 3:
@@ -90,23 +84,40 @@ public class TiroMultiplo : MonoBehaviour
         }
     }
 
-
     private void CriarTiro(Vector3 posicao, Vector2 direcao)
     {
         GameObject proj = Instantiate(projetilPrefab, posicao, Quaternion.identity);
         Rigidbody2D rb = proj.GetComponent<Rigidbody2D>();
-        rb.linearVelocity = direcao.normalized * projectileSpeed;
-        Destroy(proj, 3f);
+        if (rb != null)
+        {
+            rb.linearVelocity = direcao.normalized * projectileSpeed;
+        }
+        else
+        {
+            Debug.LogWarning("Projetil prefab não possui Rigidbody2D.");
+        }
+        Destroy(proj, 3f); // Destrói o projétil após 3 segundos
     }
-
 
     public void AumentarTiro()
     {
         quantidadeTiros = Mathf.Min(quantidadeTiros + 1, maxTiros);
+        Debug.Log("Nível de tiro aumentado para: " + quantidadeTiros);
     }
 
     public void ReduzirTiro()
     {
+        // Garante que o nível de tiro não caia abaixo do mínimo
         quantidadeTiros = Mathf.Max(quantidadeTiros - 1, minTiros);
+        Debug.Log("Nível de tiro reduzido para: " + quantidadeTiros);
+    }
+
+    // THIS IS THE MISSING METHOD
+    public void ResetTiro()
+    {
+        quantidadeTiros = minTiros; // Reseta para o nível de tiro inicial
+        staminaAtual = staminaMax; // Reseta a stamina para o máximo
+        sobrecarregado = false; // Garante que não esteja sobrecarregado
+        Debug.Log("TiroMultiplo: Sistema de tiro resetado para o nível " + minTiros + " e stamina cheia.");
     }
 }

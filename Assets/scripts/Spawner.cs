@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
     private void Start()
     {
         mainCamera = Camera.main;
-        tempoProximoSpawn = Time.time + intervaloDeSpawn;
+        tempoProximoSpawn = Time.time + intervaloDeSpawn; 
 
         // Garante que o array de porcentagens tem o tamanho correto
         if (porcentagensSpawn == null || porcentagensSpawn.Length != Mathf.Max(0, prefabsParaSpawnar.Length - 1))
@@ -52,10 +52,11 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if (spawnContinuo && Time.time >= tempoProximoSpawn)
+        if (spawnContinuo && Time.time >= tempoProximoSpawn && GameManager.Instance.IsGameActive)
         {
             SpawnarObjetos();
             tempoProximoSpawn = Time.time + intervaloDeSpawn;
+            Debug.Log($"Spawner: Spawnando {spawnSimultaneo} inimigos. Próximo spawn em {tempoProximoSpawn}");
         }
     }
 
@@ -82,18 +83,15 @@ public class Spawner : MonoBehaviour
 
     private GameObject SelecionarPrefab()
     {
-        // Primeiro prefab tem 100% de chance se for o único
         if (prefabsParaSpawnar.Length == 1)
             return prefabsParaSpawnar[0];
 
-        // Calcula chance total para prefabs adicionais
         float chanceTotal = 0f;
         for (int i = 0; i < porcentagensSpawn.Length; i++)
         {
             chanceTotal += porcentagensSpawn[i];
         }
 
-        // Normaliza as porcentagens
         float randomValue = Random.Range(0f, chanceTotal);
         float acumulado = 0f;
 
@@ -102,25 +100,20 @@ public class Spawner : MonoBehaviour
             acumulado += porcentagensSpawn[i];
             if (randomValue <= acumulado)
             {
-                return prefabsParaSpawnar[i + 1]; // +1 porque o primeiro é fixo
+                return prefabsParaSpawnar[i + 1];
             }
         }
 
-        // Fallback (nunca deve acontecer se as porcentagens estiverem corretas)
         return prefabsParaSpawnar[0];
     }
 
     private Vector3 CalcularPosicaoDireita()
     {
-        // Calcula posição fora da tela à direita
-        float posicaoY = Random.Range(0f, 1f); // Posição vertical aleatória
+        float posicaoY = Random.Range(0f, 1f);
         Vector3 viewportPos = new Vector3(1 + margemDireita, posicaoY, 0);
         Vector3 worldPos = mainCamera.ViewportToWorldPoint(viewportPos);
-        
-        // Adiciona variação vertical
         worldPos.y += Random.Range(-variacaoVertical, variacaoVertical);
         worldPos.z = 0;
-        
         return worldPos;
     }
 
@@ -137,12 +130,15 @@ public class Spawner : MonoBehaviour
             Gizmos.DrawLine(spawnPoint, spawnPoint + Vector3.left * 2f);
         }
     }
+
     public void ResetarEstado(float intervalo, int quantidade)
     {
         intervaloDeSpawn = intervalo;
         spawnSimultaneo = quantidade;
-        tempoProximoSpawn = Time.time + intervalo; // Reinicia o contador corretamente
+        if (Time.time < 1f) // Apenas inicializa no início do jogo
+        {
+            tempoProximoSpawn = Time.time + intervalo;
+        }
+        Debug.Log($"Spawner: Estado resetado. Intervalo={intervalo}, Quantidade={quantidade}, Próximo Spawn={tempoProximoSpawn}");
     }
-
-
 }
