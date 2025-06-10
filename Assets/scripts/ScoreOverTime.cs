@@ -12,6 +12,7 @@ public class ScoreOverTime : MonoBehaviour
 
     [Header("Referências")]
     [SerializeField] private ScoreManager scoreManager;
+    [SerializeField] private GameObject scoreListPanel; // Adicionado para referenciar o painel
 
     private void Awake()
     {
@@ -50,9 +51,9 @@ public class ScoreOverTime : MonoBehaviour
 
     void Update()
     {
-        if (!GameManager.Instance.IsGameActive || scoreManager == null)
+        if (!GameManager.Instance.IsGameActive || scoreManager == null || (scoreListPanel != null && scoreListPanel.activeSelf))
         {
-            Debug.LogWarning($"ScoreOverTime: Bloqueado. IsGameActive={GameManager.Instance?.IsGameActive}, ScoreManager={(scoreManager != null)}");
+            Debug.LogWarning($"ScoreOverTime: Bloqueado. IsGameActive={GameManager.Instance?.IsGameActive}, ScoreManager={(scoreManager != null)}, ScoreListPanel ativo={(scoreListPanel != null ? scoreListPanel.activeSelf : false)}");
             return;
         }
 
@@ -62,7 +63,6 @@ public class ScoreOverTime : MonoBehaviour
             tempoProximaAdicao = Time.time + intervaloAdicaoPontos;
         }
     }
-
     private void AdicionarPontos()
     {
         int pontosAtuais = pontosPorIntervaloBase;
@@ -82,4 +82,8 @@ public class ScoreOverTime : MonoBehaviour
         scoreManager.AddPoints(pontosAtuais);
         Debug.Log($"ScoreOverTime: Adicionando {pontosAtuais} pontos por tempo. Score total: {scoreManager.CurrentGameScore}");
     }
+
+
+
+
 }

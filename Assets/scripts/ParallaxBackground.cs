@@ -53,7 +53,9 @@ public class ParallaxBackground : MonoBehaviour
     public void SetCurrentSpeed(float newSpeed)
     {
         currentSpeed = newSpeed * multiplicadorVelocidade;
+        Debug.Log($"ParallaxBackground: Velocidade ajustada para {currentSpeed:F2}");
     }
+
 
     public void SetMultiplicadorVelocidade(float multiplicador)
     {

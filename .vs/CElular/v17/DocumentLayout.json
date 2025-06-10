@@ -3,16 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|c:\\users\\matutino\\documents\\github\\celular\\assets\\scenes\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\scenes\\mainmenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|c:\\users\\matutino\\documents\\github\\celular\\assets\\scripts\\parallaxbackground.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\parallaxbackground.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|c:\\users\\matutino\\documents\\github\\celular\\assets\\scripts\\dificuldadeprogressiva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\assets\\scripts\\dificuldadeprogressiva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\dificuldadeprogressiva.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|c:\\users\\matutino\\documents\\github\\celular\\assets\\enemys\\movimentoinimigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\enemys\\movimentoinimigo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\assets\\scripts\\spawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\spawner.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|c:\\users\\matutino\\documents\\github\\celular\\assets\\scripts\\player\\vidanave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\vidanave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|c:\\users\\matutino\\documents\\github\\celular\\assets\\scripts\\player\\barradevidaui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\player\\barradevidaui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|c:\\users\\matutino\\documents\\github\\celular\\assets\\scenes\\botaoreiniciar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\scenes\\botaoreiniciar.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|c:\\users\\matutino\\documents\\github\\celular\\assets\\scripts\\scoreovertime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scoreovertime.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|c:\\users\\matutino\\documents\\github\\celular\\assets\\scripts\\scoremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\scoremanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|c:\\users\\matutino\\documents\\github\\celular\\assets\\scripts\\gameoverui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B029B6FD-995D-A886-BB3C-7B7F92DAA136}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gameoverui.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\Scenes\\MainMenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scenes\\MainMenu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -31,27 +63,130 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "MainMenu.cs",
-              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\Scenes\\MainMenu.cs",
-              "RelativeDocumentMoniker": "Assets\\Scenes\\MainMenu.cs",
-              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\Scenes\\MainMenu.cs",
-              "RelativeToolTip": "Assets\\Scenes\\MainMenu.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAA4AAAA",
+              "Title": "ParallaxBackground.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\ParallaxBackground.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\ParallaxBackground.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\ParallaxBackground.cs",
+              "RelativeToolTip": "Assets\\scripts\\ParallaxBackground.cs",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAkwDMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-03T13:40:49.074Z",
+              "WhenOpened": "2025-06-10T13:11:00.412Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "MovimentoInimigo.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\enemys\\MovimentoInimigo.cs",
+              "RelativeDocumentMoniker": "Assets\\enemys\\MovimentoInimigo.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\enemys\\MovimentoInimigo.cs",
+              "RelativeToolTip": "Assets\\enemys\\MovimentoInimigo.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-10T12:54:58.961Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "BarraDeVidaUI.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\player\\BarraDeVidaUI.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\player\\BarraDeVidaUI.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\player\\BarraDeVidaUI.cs",
+              "RelativeToolTip": "Assets\\scripts\\player\\BarraDeVidaUI.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-10T12:45:31.889Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "VidaNave.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\player\\VidaNave.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\player\\VidaNave.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\player\\VidaNave.cs",
+              "RelativeToolTip": "Assets\\scripts\\player\\VidaNave.cs",
+              "ViewState": "AQIAAC0AAAAAAAAAAAAqwEkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-10T12:40:38.394Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "ScoreManager.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\ScoreManager.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\ScoreManager.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\ScoreManager.cs",
+              "RelativeToolTip": "Assets\\scripts\\ScoreManager.cs",
+              "ViewState": "AQIAAFQAAAAAAAAAAAAIwHQAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-10T12:25:16.668Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ScoreOverTime.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\ScoreOverTime.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\ScoreOverTime.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\ScoreOverTime.cs",
+              "RelativeToolTip": "Assets\\scripts\\ScoreOverTime.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAFQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-10T12:23:30.812Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "GameOverUI.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\GameOverUI.cs",
+              "RelativeDocumentMoniker": "Assets\\scripts\\GameOverUI.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\GameOverUI.cs",
+              "RelativeToolTip": "Assets\\scripts\\GameOverUI.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAowAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-10T12:16:26.631Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BotaoReiniciar.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\Scenes\\BotaoReiniciar.cs",
+              "RelativeDocumentMoniker": "Assets\\Scenes\\BotaoReiniciar.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\Scenes\\BotaoReiniciar.cs",
+              "RelativeToolTip": "Assets\\Scenes\\BotaoReiniciar.cs",
+              "ViewState": "AQIAAAgAAAAAAAAAAAAAwCsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-10T12:14:01.887Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MainMenu.cs",
+              "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\Scenes\\MainMenu.cs",
+              "RelativeDocumentMoniker": "Assets\\Scenes\\MainMenu.cs",
+              "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\Scenes\\MainMenu.cs",
+              "RelativeToolTip": "Assets\\Scenes\\MainMenu.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-03T13:40:49.074Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "Spawner.cs",
               "DocumentMoniker": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\Spawner.cs",
               "RelativeDocumentMoniker": "Assets\\scripts\\Spawner.cs",
               "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\Spawner.cs",
               "RelativeToolTip": "Assets\\scripts\\Spawner.cs",
-              "ViewState": "AQIAAHYAAAAAAAAAAAAmwJEAAAAAAAAA",
+              "ViewState": "AQIAAG0AAAAAAAAAAAA4wI8AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-30T14:07:48.964Z"
+              "WhenOpened": "2025-05-30T14:07:48.964Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -61,7 +196,7 @@
               "RelativeDocumentMoniker": "Assets\\scripts\\DificuldadeProgressiva.cs",
               "ToolTip": "C:\\Users\\Matutino\\Documents\\GitHub\\CElular\\Assets\\scripts\\DificuldadeProgressiva.cs",
               "RelativeToolTip": "Assets\\scripts\\DificuldadeProgressiva.cs",
-              "ViewState": "AQIAAMUAAAAAAAAAAAAuwNgAAAAAAAAA",
+              "ViewState": "AQIAAF4AAAAAAAAAAAAswIIAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-29T11:41:51.098Z",
               "EditorCaption": ""

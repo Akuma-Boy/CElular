@@ -189,7 +189,7 @@ MonoBehaviour:
   - {fileID: 2721646422547204099, guid: 6108be9a543c89f4db60108b01b3ee37, type: 3}
   - {fileID: 7152282130124921395, guid: 7e4cdc1442b9e924eaf8302ca43b3b1f, type: 3}
   porcentagensSpawn: []
-  intervaloDeSpawn: 3
+  intervaloDeSpawn: 6
   spawnSimultaneo: 4
   margemDireita: 0.11
   variacaoVertical: 0.2
@@ -356,6 +356,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 960eadc959b51c44b8c5087fb91f0431, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreListPanel: {fileID: 1992777727}
+  vidaNave: {fileID: 150734115}
 --- !u!1 &150734109
 GameObject:
   m_ObjectHideFlags: 0
@@ -551,7 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f9b5f5cbd4b02469a1d41fb5d42cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaMaxima: 1
+  vidaMaxima: 5
   vidaAtual: 0
   tempoInvencibilidade: 1.5
   aoReceberDano:
@@ -838,10 +840,10 @@ MonoBehaviour:
   powerupsPrefabs:
   - {fileID: 758532223560414738, guid: 1ae0d9a65e07984428ea09b6be051d94, type: 3}
   - {fileID: 106442511385487154, guid: f4099783e781af043b5fc8239045d14f, type: 3}
-  chancesDeSpawn: 290000002600000000000000
+  chancesDeSpawn: 3200000032000000
   intervalo: 7
-  areaSpawnMin: {x: 12, y: -3.5}
-  areaSpawnMax: {x: 16, y: 3.5}
+  areaSpawnMin: {x: 11.8, y: -3.7}
+  areaSpawnMax: {x: 15.9, y: 4.29}
 --- !u!4 &461492855
 Transform:
   m_ObjectHideFlags: 0
@@ -1683,7 +1685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &891401402
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1825,7 +1827,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1214508564}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameStartManager, Assembly-CSharp
         m_MethodName: StartGame
         m_Mode: 1
@@ -1913,7 +1915,7 @@ MonoBehaviour:
   - {fileID: 2721646422547204099, guid: 6108be9a543c89f4db60108b01b3ee37, type: 3}
   - {fileID: 7152282130124921395, guid: 7e4cdc1442b9e924eaf8302ca43b3b1f, type: 3}
   porcentagensSpawn: []
-  intervaloDeSpawn: 0.5
+  intervaloDeSpawn: 5
   spawnSimultaneo: 2
   margemDireita: 0.12
   variacaoVertical: 0.81
@@ -2171,6 +2173,7 @@ MonoBehaviour:
   pontosMaximosBonusDificuldade: 50
   tempoProximaAdicao: 0
   scoreManager: {fileID: 1147167274}
+  scoreListPanel: {fileID: 0}
 --- !u!4 &1147167276
 Transform:
   m_ObjectHideFlags: 0
@@ -2223,11 +2226,13 @@ MonoBehaviour:
   quantidadeMinimaSpawn: 1
   quantidadeMaximaSpawn: 3
   aumentarVelocidadeInimigos: 1
+  multiplicadorCrescimentoVelocidade: 7
   velocidadeMinimaInimigo: 2
-  velocidadeMaximaInimigo: 6
+  velocidadeMaximaInimigo: 20
   aumentarVelocidadeParallax: 1
-  parallaxVelocidadeMinima: 1
-  parallaxVelocidadeMaxima: 50
+  parallaxVelocidadeMinima: 2
+  parallaxVelocidadeMaxima: 20
+  multiplicadorCrescimentoParallax: 4
 --- !u!4 &1214508562
 Transform:
   m_ObjectHideFlags: 0
@@ -2391,7 +2396,7 @@ MonoBehaviour:
   - {fileID: 2721646422547204099, guid: 84bb1581e7130a94f89ebae8531d13f5, type: 3}
   - {fileID: 7152282130124921395, guid: 7e4cdc1442b9e924eaf8302ca43b3b1f, type: 3}
   porcentagensSpawn: []
-  intervaloDeSpawn: 2
+  intervaloDeSpawn: 4
   spawnSimultaneo: 1
   margemDireita: 0.1
   variacaoVertical: 1
@@ -7953,7 +7958,7 @@ MonoBehaviour:
   - {fileID: 2710874731323103673, guid: 898e842d4ef8d0342a0fc46f7bef5759, type: 3}
   - {fileID: 6176599765784151619, guid: 20afe964b6910bc48855bf43055b402b, type: 3}
   porcentagensSpawn: []
-  intervaloDeSpawn: 1
+  intervaloDeSpawn: 3
   spawnSimultaneo: 1
   margemDireita: 0.1
   variacaoVertical: 0.38

@@ -13,20 +13,36 @@ public class DificuldadeProgressiva : MonoBehaviour
     [SerializeField] private float intervaloMaximoSpawn = 2f;
     [SerializeField] private int quantidadeMinimaSpawn = 1;
     [SerializeField] private int quantidadeMaximaSpawn = 3; // Reduzido para evitar excesso
-    
+
     [SerializeField] private bool aumentarVelocidadeInimigos = true;
+    [SerializeField] private float multiplicadorCrescimentoVelocidade = 2f; // Ajustável no Inspector
     [SerializeField] private float velocidadeMinimaInimigo = 2f;
     [SerializeField] private float velocidadeMaximaInimigo = 6f;
+
 
     [Header("Configurações do Parallax")]
     [SerializeField] private bool aumentarVelocidadeParallax = true;
     [SerializeField] private float parallaxVelocidadeMinima = 1f;
     [SerializeField] private float parallaxVelocidadeMaxima = 5f;
+    [SerializeField] private float multiplicadorCrescimentoParallax = 2f; // Ajustável no Inspector
+
+
+
 
     private List<Spawner> spawners = new();
     private List<ParallaxBackground> parallaxLayers = new(); 
     private float tempoAtualJogo;
     public bool EstaAtivo { get; set; }
+
+
+    public void IniciarDificuldade()
+    {
+        tempoAtualJogo = 0f;
+        EstaAtivo = true;
+        Debug.Log("DificuldadeProgressiva: Ativando dificuldade progressiva.");
+    }
+
+
 
     public float ProgressoNormalizado
     {
@@ -61,23 +77,22 @@ public class DificuldadeProgressiva : MonoBehaviour
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        if (GameManager.Instance != null && scene.name == GameManager.Instance.gameSceneName)
+        spawners = FindObjectsByType<Spawner>(FindObjectsSortMode.None).ToList();
+        parallaxLayers = FindObjectsByType<ParallaxBackground>(FindObjectsSortMode.None).ToList(); // Adicionado
+
+        Debug.Log($"DificuldadeProgressiva: Encontrados {spawners.Count} spawners e {parallaxLayers.Count} camadas de parallax.");
+
+        if (spawners.Count == 0)
         {
-            spawners = FindObjectsByType<Spawner>(FindObjectsSortMode.None).ToList();
-            parallaxLayers = FindObjectsByType<ParallaxBackground>(FindObjectsSortMode.None).ToList();
-            Debug.Log($"DificuldadeProgressiva: Encontrados {spawners.Count} Spawners e {parallaxLayers.Count} ParallaxBackgrounds na cena '{scene.name}'.");
+            Debug.LogError("DificuldadeProgressiva: Nenhum spawner encontrado! Verifique se eles estão na cena.");
         }
-        else if (GameManager.Instance == null)
+        if (parallaxLayers.Count == 0)
         {
-            Debug.LogError("DificuldadeProgressiva: GameManager.Instance não encontrado.");
-            EstaAtivo = false;
-        }
-        else
-        {
-            EstaAtivo = false;
-            Debug.Log("DificuldadeProgressiva: Não na cena de jogo. EstaAtivo = false.");
+            Debug.LogError("DificuldadeProgressiva: Nenhuma camada de parallax encontrada! Verifique se elas estão na cena.");
         }
     }
+
+
 
     private void Update()
     {
@@ -98,18 +113,30 @@ public class DificuldadeProgressiva : MonoBehaviour
 
         if (aumentarVelocidadeInimigos)
         {
-            float novaVelocidadeInimigo = Mathf.Lerp(velocidadeMinimaInimigo, velocidadeMaximaInimigo, progresso);
-            // Lógica para ajustar a velocidade dos inimigos
+            float novaVelocidadeInimigo = Mathf.Lerp(velocidadeMinimaInimigo, velocidadeMaximaInimigo, progresso * multiplicadorCrescimentoVelocidade);
+            MovimentoInimigo[] inimigos = FindObjectsByType<MovimentoInimigo>(FindObjectsSortMode.None);
+
+            foreach (var inimigo in inimigos)
+            {
+                inimigo.velocidade = novaVelocidadeInimigo;
+            }
+
+            Debug.Log($"DificuldadeProgressiva: Velocidade dos inimigos ajustada para {novaVelocidadeInimigo:F2}");
         }
+
 
         if (aumentarVelocidadeParallax)
         {
-            float novaVelocidadeParallax = Mathf.Lerp(parallaxVelocidadeMinima, parallaxVelocidadeMaxima, progresso);
+            float novaVelocidadeParallax = Mathf.Lerp(parallaxVelocidadeMinima, parallaxVelocidadeMaxima, Mathf.Clamp(progresso * multiplicadorCrescimentoParallax, 0f, 1f));
+
             foreach (var parallax in parallaxLayers)
             {
                 parallax.SetCurrentSpeed(novaVelocidadeParallax);
             }
+
+            Debug.Log($"DificuldadeProgressiva: Velocidade do parallax ajustada para {novaVelocidadeParallax:F2}");
         }
+
     }
 
     public void ResetarDificuldade()

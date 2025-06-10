@@ -59,7 +59,7 @@ public class VidaNave : MonoBehaviour
             spriteRenderer.enabled = true;
             spriteRenderer.color = corOriginal;
         }
-        
+
         gameObject.SetActive(true);
 
         if (tiroMultiplo != null)
@@ -67,8 +67,11 @@ public class VidaNave : MonoBehaviour
             tiroMultiplo.ResetTiro();
         }
 
+        aoCurar.Invoke(); // **Dispara o evento ao resetar a vida, garantindo que a UI seja atualizada**
+
         Debug.Log("VidaNave: Vida resetada para " + vidaAtual);
     }
+
 
     public void ReceberDano(int quantidade)
     {
