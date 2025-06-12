@@ -22,7 +22,6 @@ public class Spawner : MonoBehaviour
         mainCamera = Camera.main;
         tempoProximoSpawn = Time.time + intervaloDeSpawn; 
 
-        // Garante que o array de porcentagens tem o tamanho correto
         if (porcentagensSpawn == null || porcentagensSpawn.Length != Mathf.Max(0, prefabsParaSpawnar.Length - 1))
         {
             ResetarPorcentagens();
@@ -52,11 +51,12 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        if (spawnContinuo && Time.time >= tempoProximoSpawn && GameManager.Instance.IsGameActive)
+        // Ensure GameManager.Instance is not null before accessing IsGameActive
+        if (spawnContinuo && Time.time >= tempoProximoSpawn && GameManager.Instance != null && GameManager.Instance.IsGameActive)
         {
             SpawnarObjetos();
             tempoProximoSpawn = Time.time + intervaloDeSpawn;
-            Debug.Log($"Spawner: Spawnando {spawnSimultaneo} inimigos. Próximo spawn em {tempoProximoSpawn}");
+            // Debug.Log($"Spawner: Spawnando {spawnSimultaneo} inimigos. Próximo spawn em {tempoProximoSpawn}");
         }
     }
 
@@ -109,6 +109,16 @@ public class Spawner : MonoBehaviour
 
     private Vector3 CalcularPosicaoDireita()
     {
+        if (mainCamera == null) // Defensive check
+        {
+            mainCamera = Camera.main;
+            if (mainCamera == null)
+            {
+                Debug.LogError("Spawner: Main Camera not found!");
+                return Vector3.zero;
+            }
+        }
+
         float posicaoY = Random.Range(0f, 1f);
         Vector3 viewportPos = new Vector3(1 + margemDireita, posicaoY, 0);
         Vector3 worldPos = mainCamera.ViewportToWorldPoint(viewportPos);
@@ -135,10 +145,8 @@ public class Spawner : MonoBehaviour
     {
         intervaloDeSpawn = intervalo;
         spawnSimultaneo = quantidade;
-        if (Time.time < 1f) // Apenas inicializa no início do jogo
-        {
-            tempoProximoSpawn = Time.time + intervalo;
-        }
+        // Always reset next spawn time when state is reset
+        tempoProximoSpawn = Time.time + intervaloDeSpawn; 
         Debug.Log($"Spawner: Estado resetado. Intervalo={intervalo}, Quantidade={quantidade}, Próximo Spawn={tempoProximoSpawn}");
     }
 }

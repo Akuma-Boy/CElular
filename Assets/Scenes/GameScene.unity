@@ -162,7 +162,7 @@ GameObject:
   - component: {fileID: 39966721}
   m_Layer: 0
   m_Name: spawner (3)
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -357,7 +357,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreListPanel: {fileID: 1992777727}
-  vidaNave: {fileID: 150734115}
 --- !u!1 &150734109
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,6 +374,7 @@ GameObject:
   - component: {fileID: 150734114}
   - component: {fileID: 150734117}
   - component: {fileID: 150734118}
+  - component: {fileID: 150734119}
   m_Layer: 3
   m_Name: nave_2
   m_TagString: Player
@@ -553,7 +553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f9b5f5cbd4b02469a1d41fb5d42cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaMaxima: 5
+  vidaMaxima: 1
   vidaAtual: 0
   tempoInvencibilidade: 1.5
   aoReceberDano:
@@ -625,6 +625,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   escudoVisual: {fileID: 0}
+--- !u!114 &150734119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150734109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a94421936e950f44bde1201d46a9adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameOverPanel: {fileID: 496805270}
+  nickInputField: {fileID: 1303279952}
+  scoreListText: {fileID: 1351471270}
+  pressEnterText: {fileID: 0}
+  scoreListPanel: {fileID: 1992777727}
+  submitButton: {fileID: 857501661}
+  menuButton: {fileID: 110230502}
 --- !u!1 &220889580
 GameObject:
   m_ObjectHideFlags: 0
@@ -717,7 +736,7 @@ GameObject:
   - component: {fileID: 277458034}
   m_Layer: 0
   m_Name: fundo00_0 (1)
-  m_TagString: Untagged
+  m_TagString: parallax
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -749,8 +768,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ea633787d1323240ba6a7cc5fd53257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidadeBase: 1
-  multiplicadorVelocidade: 1
+  velocidadeBase: 2
+  multiplicadorVelocidade: 7
+  habilitarProgressaoAutonoma: 1
+  tempoTotalProgressao: 1000
+  velocidadeMaximaProgressao: 20
+  curvaProgressaoVelocidade:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   repeatHorizontal: 1
   repeatVertical: 0
 --- !u!212 &277458035
@@ -950,8 +996,8 @@ GameObject:
   - component: {fileID: 496805273}
   - component: {fileID: 496805272}
   m_Layer: 5
-  m_Name: GameOverPanel
-  m_TagString: Untagged
+  m_Name: 'GameOverPanel '
+  m_TagString: gameOverPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1460,7 +1506,7 @@ GameObject:
   - component: {fileID: 765385359}
   m_Layer: 0
   m_Name: fundo00_0 (2)
-  m_TagString: Untagged
+  m_TagString: parallax
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1618,7 +1664,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1147167273}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: GameOverUI, Assembly-CSharp
         m_MethodName: OnSubmitNick
         m_Mode: 1
@@ -1889,7 +1935,7 @@ GameObject:
   - component: {fileID: 1058977232}
   m_Layer: 0
   m_Name: spawner (2)
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2115,7 +2161,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1147167276}
   - component: {fileID: 1147167275}
-  - component: {fileID: 1147167273}
   - component: {fileID: 1147167274}
   m_Layer: 0
   m_Name: ScoreManager
@@ -2124,25 +2169,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1147167273
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1147167272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a94421936e950f44bde1201d46a9adb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameOverPanel: {fileID: 496805270}
-  nickInputField: {fileID: 1303279952}
-  scoreListText: {fileID: 1351471270}
-  pressEnterText: {fileID: 0}
-  scoreListPanel: {fileID: 1992777727}
-  submitButton: {fileID: 857501661}
-  menuButton: {fileID: 110230502}
 --- !u!114 &1147167274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2173,7 +2199,7 @@ MonoBehaviour:
   pontosMaximosBonusDificuldade: 50
   tempoProximaAdicao: 0
   scoreManager: {fileID: 1147167274}
-  scoreListPanel: {fileID: 0}
+  scoreListPanel: {fileID: 1992777727}
 --- !u!4 &1147167276
 Transform:
   m_ObjectHideFlags: 0
@@ -2228,11 +2254,11 @@ MonoBehaviour:
   aumentarVelocidadeInimigos: 1
   multiplicadorCrescimentoVelocidade: 7
   velocidadeMinimaInimigo: 2
-  velocidadeMaximaInimigo: 20
+  velocidadeMaximaInimigo: 15
   aumentarVelocidadeParallax: 1
   parallaxVelocidadeMinima: 2
   parallaxVelocidadeMaxima: 20
-  multiplicadorCrescimentoParallax: 4
+  multiplicadorCrescimentoParallax: 7
 --- !u!4 &1214508562
 Transform:
   m_ObjectHideFlags: 0
@@ -2260,8 +2286,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291c19debc6f2224a8d5e01bd1d5f488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dificuldadeProgressiva: {fileID: 1214508561}
-  scoreManager: {fileID: 1147167274}
+  dificuldadeProgressivaInstance: {fileID: 1214508561}
+  scoreManagerInstance: {fileID: 1147167274}
   menuSceneName: Menu
   gameSceneName: GameScene
   launcherSceneName: LauncherScene
@@ -2371,7 +2397,7 @@ GameObject:
   - component: {fileID: 1257395992}
   m_Layer: 0
   m_Name: spawner (1)
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7830,7 +7856,7 @@ GameObject:
   - component: {fileID: 1744942441}
   m_Layer: 0
   m_Name: fundo00_0
-  m_TagString: Untagged
+  m_TagString: parallax
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7917,8 +7943,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ea633787d1323240ba6a7cc5fd53257, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidadeBase: 1
-  multiplicadorVelocidade: 1
+  velocidadeBase: 2
+  multiplicadorVelocidade: 7
+  habilitarProgressaoAutonoma: 1
+  tempoTotalProgressao: 1000
+  velocidadeMaximaProgressao: 20
+  curvaProgressaoVelocidade:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 1
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 1
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   repeatHorizontal: 1
   repeatVertical: 0
 --- !u!1 &1936700802
@@ -7933,7 +7986,7 @@ GameObject:
   - component: {fileID: 1936700803}
   m_Layer: 0
   m_Name: spawner
-  m_TagString: Untagged
+  m_TagString: Spawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

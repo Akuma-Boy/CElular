@@ -1,3 +1,5 @@
+// DificuldadeProgressiva.cs (mantendo o código anterior com as pequenas modificações)
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -8,45 +10,43 @@ public class DificuldadeProgressiva : MonoBehaviour
     public static DificuldadeProgressiva Instance { get; private set; }
 
     [Header("Configurações de Dificuldade")]
-    [SerializeField] private float tempoTotal = 300f; // Aumentado para 5 minutos
-    [SerializeField] private float intervaloMinimoSpawn = 0.3f;
-    [SerializeField] private float intervaloMaximoSpawn = 2f;
+    [SerializeField] private float tempoTotal = 300f; // Total time to reach max difficulty (5 minutes)
+    [SerializeField] private float intervaloMinimoSpawn = 0.3f; // Faster spawn
+    [SerializeField] private float intervaloMaximoSpawn = 2f;    // Slower spawn
     [SerializeField] private int quantidadeMinimaSpawn = 1;
-    [SerializeField] private int quantidadeMaximaSpawn = 3; // Reduzido para evitar excesso
+    [SerializeField] private int quantidadeMaximaSpawn = 3;
 
     [SerializeField] private bool aumentarVelocidadeInimigos = true;
-    [SerializeField] private float multiplicadorCrescimentoVelocidade = 2f; // Ajustável no Inspector
+    [SerializeField] private float multiplicadorCrescimentoVelocidade = 2f; // How much progress affects speed increase
     [SerializeField] private float velocidadeMinimaInimigo = 2f;
     [SerializeField] private float velocidadeMaximaInimigo = 6f;
-
 
     [Header("Configurações do Parallax")]
     [SerializeField] private bool aumentarVelocidadeParallax = true;
     [SerializeField] private float parallaxVelocidadeMinima = 1f;
     [SerializeField] private float parallaxVelocidadeMaxima = 5f;
-    [SerializeField] private float multiplicadorCrescimentoParallax = 2f; // Ajustável no Inspector
+    [SerializeField] private float multiplicadorCrescimentoParallax = 2f;
 
-
-
-
-    private List<Spawner> spawners = new();
-    private List<ParallaxBackground> parallaxLayers = new(); 
+    private List<Spawner> spawners = new List<Spawner>(); 
+    private List<ParallaxBackground> parallaxLayers = new List<ParallaxBackground>();
     private float tempoAtualJogo;
-    public bool EstaAtivo { get; set; }
-
-
-    public void IniciarDificuldade()
-    {
-        tempoAtualJogo = 0f;
-        EstaAtivo = true;
-        Debug.Log("DificuldadeProgressiva: Ativando dificuldade progressiva.");
-    }
-
-
+    public bool EstaAtivo { get; set; } // Esta será controlada pelo GameManager e pelo próprio script
 
     public float ProgressoNormalizado
     {
-        get { return Mathf.Clamp01(tempoAtualJogo / tempoTotal); }
+        get { return Mathf.Clamp01(tempoAtualJogo / (tempoTotal > 0 ? tempoTotal : 1f)); }
+    }
+
+    public float GetCurrentEnemySpeed()
+    {
+        if (!EstaAtivo) // Se não está ativo, retorna a velocidade mínima
+        {
+            Debug.LogWarning("<color=red>DificuldadeProgressiva: GetCurrentEnemySpeed called but EstaAtivo is FALSE. Returning min speed.</color>");
+            return velocidadeMinimaInimigo;
+        }
+        float progresso = ProgressoNormalizado;
+        float calculatedSpeed = Mathf.Lerp(velocidadeMinimaInimigo, velocidadeMaximaInimigo, progresso * multiplicadorCrescimentoVelocidade);
+        return Mathf.Clamp(calculatedSpeed, velocidadeMinimaInimigo, velocidadeMaximaInimigo);
     }
 
     private void Awake()
@@ -55,11 +55,12 @@ public class DificuldadeProgressiva : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-            Debug.Log("DificuldadeProgressiva: Instância criada e marcada como DontDestroyOnLoad.");
+            Debug.Log("<color=green>DificuldadeProgressiva: Instância criada e marcada como DontDestroyOnLoad. HashCode: " + GetHashCode() + "</color>");
+            EstaAtivo = false; // Começa inativo por padrão
         }
         else
         {
-            Debug.LogWarning("DificuldadeProgressiva: Instância duplicada destruída.");
+            Debug.LogWarning("<color=orange>DificuldadeProgressiva: Instância duplicada detectada (" + GetHashCode() + "), destruindo-a. Existing HashCode: " + Instance.GetHashCode() + "</color>");
             Destroy(gameObject);
             return;
         }
@@ -67,94 +68,244 @@ public class DificuldadeProgressiva : MonoBehaviour
 
     private void OnEnable()
     {
+        Debug.Log("<color=cyan>DificuldadeProgressiva: OnEnable - Subscribing to SceneManager and GameManager events.</color>");
         SceneManager.sceneLoaded += OnSceneLoaded;
+        
+        // Tenta se inscrever imediatamente, ou usa a coroutine se o GameManager ainda não estiver pronto
+        if (GameManager.Instance != null)
+        {
+            GameManager.OnGameStart += OnGameStartHandler;
+            GameManager.OnGameOver += OnGameOverHandler;
+            Debug.Log("<color=green>DificuldadeProgressiva: Subscribed to GameManager.OnGameStart and OnGameOver (early).</color>");
+        }
+        else
+        {
+            StartCoroutine(SubscribeToGameManagerEventsDelayed()); 
+        }
+    }
+
+    private IEnumerator SubscribeToGameManagerEventsDelayed()
+    {
+        while (GameManager.Instance == null)
+        {
+            yield return null; // Espera um frame até que o GameManager esteja disponível
+        }
+
+        GameManager.OnGameStart += OnGameStartHandler;
+        GameManager.OnGameOver += OnGameOverHandler;
+        Debug.Log("<color=green>DificuldadeProgressiva: Subscribed to GameManager.OnGameStart and OnGameOver (delayed).</color>");
     }
 
     private void OnDisable()
     {
+        Debug.Log("<color=cyan>DificuldadeProgressiva: OnDisable - Unsubscribing from SceneManager and GameManager events.</color>");
         SceneManager.sceneLoaded -= OnSceneLoaded;
+
+        if (GameManager.Instance != null) 
+        {
+            GameManager.OnGameStart -= OnGameStartHandler;
+            GameManager.OnGameOver -= OnGameOverHandler;
+            Debug.Log("<color=red>DificuldadeProgressiva: Unsubscribed from GameManager.OnGameStart and OnGameOver.</color>");
+        }
+        else
+        {
+            Debug.LogWarning("<color=orange>DificuldadeProgressiva: GameManager.Instance não encontrado no OnDisable (pode já ter sido destruído).</color>");
+        }
+    }
+
+    // Handler para o evento OnGameStart do GameManager
+    private void OnGameStartHandler()
+    {
+        Debug.Log("<color=green>DificuldadeProgressiva: OnGameStartHandler chamado! Definindo EstaAtivo = TRUE e resetando tempo.</color>");
+        EstaAtivo = true; // ATIVA a progressão
+        tempoAtualJogo = 0f; // Reseta o tempo para o início do jogo
+
+        // Garante que a reinicialização dos objetos da cena ocorra após o Start de todos eles.
+        StartCoroutine(DelayedReinitializeSceneObjects()); 
+    }
+
+    private IEnumerator DelayedReinitializeSceneObjects()
+    {
+        // Espera um frame para garantir que todos os objetos da nova cena completaram seus Awakes e Starts.
+        yield return null; 
+
+        ReinitializeSceneObjects(); // Agora é seguro encontrar e aplicar as configurações
+    }
+
+    // Handler para o evento OnGameOver do GameManager
+    private void OnGameOverHandler()
+    {
+        Debug.Log("<color=green>DificuldadeProgressiva: OnGameOverHandler chamado! Definindo EstaAtivo = FALSE.</color>");
+        EstaAtivo = false; // DESATIVA a progressão
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        spawners = FindObjectsByType<Spawner>(FindObjectsSortMode.None).ToList();
-        parallaxLayers = FindObjectsByType<ParallaxBackground>(FindObjectsSortMode.None).ToList(); // Adicionado
-
-        Debug.Log($"DificuldadeProgressiva: Encontrados {spawners.Count} spawners e {parallaxLayers.Count} camadas de parallax.");
-
-        if (spawners.Count == 0)
+        if (GameManager.Instance != null && scene.name == GameManager.Instance.gameSceneName)
         {
-            Debug.LogError("DificuldadeProgressiva: Nenhum spawner encontrado! Verifique se eles estão na cena.");
+            Debug.Log($"<color=green>DificuldadeProgressiva: Cenário de jogo '{scene.name}' carregado. Verificando estado do GameManager e ativando progressão se o jogo estiver ativo.</color>");
+            
+            // É CRÍTICO que o GameManager.IsGameActive seja TRUE neste ponto para a primeira run
+            if (GameManager.Instance.IsGameActive)
+            {
+                // Se o jogo já está ativo (primeira run, ou reinício), reinicia e ativa
+                OnGameStartHandler(); // Reusa a lógica de ativação
+            }
+            else
+            {
+                // Se a cena do jogo carregou mas o GameManager diz que o jogo NÃO está ativo
+                // (ex: talvez carregou a cena do jogo diretamente no editor sem passar pelo menu)
+                // então não ativa a progressão.
+                EstaAtivo = false; 
+                Debug.LogWarning("<color=orange>DificuldadeProgressiva: Cena de jogo carregada, mas GameManager.IsGameActive é FALSE. Dificuldade permanecerá desativada por enquanto.</color>");
+            }
         }
-        if (parallaxLayers.Count == 0)
+        else
         {
-            Debug.LogError("DificuldadeProgressiva: Nenhuma camada de parallax encontrada! Verifique se elas estão na cena.");
+            // Para outras cenas (ex: Menu), garante que está desativado e limpa listas
+            spawners.Clear();
+            parallaxLayers.Clear();
+            EstaAtivo = false; 
+            Debug.Log($"<color=blue>DificuldadeProgressiva: Cena '{scene.name}' carregada (Não é a cena do jogo). Dificuldade desativada. EstaAtivo: {EstaAtivo}</color>");
         }
     }
 
-
-
-    private void Update()
+    private void ReinitializeSceneObjects()
     {
-        if (!EstaAtivo) return;
+        spawners.Clear();
+        parallaxLayers.Clear();
 
-        tempoAtualJogo += Time.deltaTime;
-        float progresso = ProgressoNormalizado;
-        float novoIntervalo = Mathf.Lerp(intervaloMaximoSpawn, intervaloMinimoSpawn, progresso);
-        int novaQuantidade = Mathf.RoundToInt(Mathf.Lerp(quantidadeMinimaSpawn, quantidadeMaximaSpawn, progresso));
+        // Usando FindObjectsByType para garantir que encontramos todos os objetos na cena atual
+        spawners = FindObjectsByType<Spawner>(FindObjectsSortMode.None).ToList();
+        parallaxLayers = FindObjectsByType<ParallaxBackground>(FindObjectsSortMode.None).ToList();
 
-        foreach (var spawner in spawners)
+        Debug.Log($"<color=yellow>DificuldadeProgressiva: Re-inicializando objetos de cena. Encontrados {spawners.Count} spawners e {parallaxLayers.Count} camadas de parallax.</color>");
+
+        if (spawners.Count == 0)
         {
-            spawner.intervaloDeSpawn = novoIntervalo;
-            spawner.spawnSimultaneo = novaQuantidade;
+            Debug.LogError("<color=red>DificuldadeProgressiva: NENHUM spawner encontrado na cena de jogo! A progressão do spawn NÃO funcionará. Verifique se estão ativos e na cena.</color>");
+        }
+        if (parallaxLayers.Count == 0)
+        {
+            Debug.LogError("<color=red>DificuldadeProgressiva: NENHUMA camada de parallax encontrada na cena de jogo! A velocidade do parallax NÃO funcionará. Verifique se estão ativos e na cena.</color>");
         }
 
-        Debug.Log($"DificuldadeProgressiva: Progresso={progresso:F2}, Intervalo={novoIntervalo:F2}, Quantidade={novaQuantidade}");
+        ApplyInitialDifficultySettings();
+    }
+
+    private void ApplyInitialDifficultySettings()
+    {
+        Debug.Log("<color=yellow>DificuldadeProgressiva: Aplicando configurações iniciais (Spawner, Inimigos e Parallax) *AGORA*.</color>");
+        
+        foreach (var spawner in spawners)
+        {
+            if (spawner != null)
+            {
+                spawner.intervaloDeSpawn = intervaloMaximoSpawn;
+                spawner.spawnSimultaneo = quantidadeMinimaSpawn;
+                // Debug.Log($"<color=yellow>  Spawner '{spawner.name}' resetado para Intervalo: {intervaloMaximoSpawn}, Quantidade: {quantidadeMinimaSpawn}</color>");
+            }
+            else Debug.LogWarning("<color=orange>  DificuldadeProgressiva: Spawner NULL na lista durante ApplyInitialDifficultySettings.</color>");
+        }
 
         if (aumentarVelocidadeInimigos)
         {
-            float novaVelocidadeInimigo = Mathf.Lerp(velocidadeMinimaInimigo, velocidadeMaximaInimigo, progresso * multiplicadorCrescimentoVelocidade);
-            MovimentoInimigo[] inimigos = FindObjectsByType<MovimentoInimigo>(FindObjectsSortMode.None);
-
-            foreach (var inimigo in inimigos)
+            MovimentoInimigo[] inimigosExistentes = FindObjectsByType<MovimentoInimigo>(FindObjectsSortMode.None);
+            foreach (var inimigo in inimigosExistentes)
             {
-                inimigo.velocidade = novaVelocidadeInimigo;
+                if (inimigo != null)
+                {
+                    inimigo.velocidade = velocidadeMinimaInimigo;
+                    // Debug.Log($"<color=yellow>  Inimigo '{inimigo.name}' velocidade inicial definida para: {velocidadeMinimaInimigo}</color>");
+                }
+                else Debug.LogWarning("<color=orange>  DificuldadeProgressiva: MovimentoInimigo NULL na lista de inimigos existentes.</color>");
             }
-
-            Debug.Log($"DificuldadeProgressiva: Velocidade dos inimigos ajustada para {novaVelocidadeInimigo:F2}");
         }
-
 
         if (aumentarVelocidadeParallax)
         {
-            float novaVelocidadeParallax = Mathf.Lerp(parallaxVelocidadeMinima, parallaxVelocidadeMaxima, Mathf.Clamp(progresso * multiplicadorCrescimentoParallax, 0f, 1f));
-
             foreach (var parallax in parallaxLayers)
             {
-                parallax.SetCurrentSpeed(novaVelocidadeParallax);
+                if (parallax != null)
+                {
+                    parallax.ResetParallax(parallaxVelocidadeMinima); 
+                    // Debug.Log($"<color=yellow>  Parallax '{parallax.name}' resetado para velocidade: {parallaxVelocidadeMinima}</color>");
+                }
+                else Debug.LogWarning("<color=orange>  DificuldadeProgressiva: Parallax NULL na lista durante ApplyInitialDifficultySettings.</color>");
             }
+        }
+    }
 
-            Debug.Log($"DificuldadeProgressiva: Velocidade do parallax ajustada para {novaVelocidadeParallax:F2}");
+    private void Update()
+    {
+        if (!EstaAtivo)
+        {
+            return;
         }
 
+        tempoAtualJogo += Time.deltaTime;
+        float progresso = ProgressoNormalizado;
+        
+        // --- Update Spawner settings ---
+        float novoIntervalo = Mathf.Lerp(intervaloMaximoSpawn, intervaloMinimoSpawn, progresso);
+        int novaQuantidade = Mathf.RoundToInt(Mathf.Lerp(quantidadeMinimaSpawn, quantidadeMaximaSpawn, progresso));
+
+        if (spawners.Count > 0)
+        {
+            foreach (var spawner in spawners)
+            {
+                if (spawner != null)
+                {
+                    spawner.intervaloDeSpawn = novoIntervalo;
+                    spawner.spawnSimultaneo = novaQuantidade;
+                }
+            }
+        }
+        else Debug.LogWarning("<color=red>DificuldadeProgressiva: NENHUM spawner na lista. Spawn não está progredindo.</color>");
+
+
+        // --- Update Enemy Speed ---
+        if (aumentarVelocidadeInimigos)
+        {
+            float novaVelocidadeInimigo = GetCurrentEnemySpeed(); 
+            MovimentoInimigo[] inimigosAtivos = FindObjectsByType<MovimentoInimigo>(FindObjectsSortMode.None);
+            
+            if (inimigosAtivos.Length > 0)
+            {
+                foreach (var inimigo in inimigosAtivos)
+                {
+                    if (inimigo != null)
+                    {
+                        inimigo.velocidade = novaVelocidadeInimigo;
+                    }
+                }
+            }
+        }
+
+        // --- Update Parallax Speed ---
+        if (aumentarVelocidadeParallax)
+        {
+            float novaVelocidadeParallax = Mathf.Lerp(parallaxVelocidadeMinima, parallaxVelocidadeMaxima, progresso * multiplicadorCrescimentoParallax);
+            novaVelocidadeParallax = Mathf.Clamp(novaVelocidadeParallax, parallaxVelocidadeMinima, parallaxVelocidadeMaxima);
+
+            if (parallaxLayers.Count > 0)
+            {
+                foreach (var parallax in parallaxLayers)
+                {
+                    if (parallax != null)
+                    {
+                        parallax.SetCurrentSpeed(novaVelocidadeParallax);
+                    }
+                }
+            }
+            else Debug.LogWarning("<color=red>DificuldadeProgressiva: NENHUMA camada de parallax na lista. Velocidade do parallax não está progredindo.</color>");
+        }
     }
 
     public void ResetarDificuldade()
     {
         tempoAtualJogo = 0f;
-        EstaAtivo = false;
-        
-        foreach (var spawner in spawners)
-        {
-            spawner.ResetarEstado(intervaloMaximoSpawn, quantidadeMinimaSpawn);
-        }
-        if (aumentarVelocidadeParallax)
-        {
-            foreach (var parallax in parallaxLayers)
-            {
-                parallax.SetCurrentSpeed(parallaxVelocidadeMinima);
-            }
-        }
-        Debug.Log("DificuldadeProgressiva: Dificuldade resetada para o estado inicial.");
+        EstaAtivo = false; // Garantir que está inativo ao resetar
+        Debug.Log($"<color=green>DificuldadeProgressiva: Dificuldade resetada para o estado inicial. EstaAtivo: {EstaAtivo}</color>");
     }
 }
