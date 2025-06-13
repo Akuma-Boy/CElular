@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class TiroMultiplo : MonoBehaviour
 {
@@ -10,7 +11,7 @@ public class TiroMultiplo : MonoBehaviour
     public float espacamentoVertical = 0.4f;
     public GameObject projetilPrefab;
     public float projectileSpeed = 10f;
-    public Transform firePoint;
+    public Transform firePoint; // Já existe, mas vamos garantir sua atribuição
 
     [Header("Sistema de Stamina")]
     public float staminaMax = 100f;
@@ -24,6 +25,29 @@ public class TiroMultiplo : MonoBehaviour
     public float GetStaminaNormalized()
     {
         return Mathf.Clamp01(staminaAtual / staminaMax);
+    }
+
+    private void Start()
+    {
+        // Garante que o firePoint esteja atribuído.
+        // Se firePoint não foi arrastado no Inspector, tenta encontrar um filho chamado "FirePoint"
+        // Ou assume que ele está no próprio GameObject se não encontrar.
+        if (firePoint == null)
+        {
+            Transform foundFirePoint = transform.Find("FirePoint");
+            if (foundFirePoint != null)
+            {
+                firePoint = foundFirePoint;
+                Debug.Log("<color=green>[TiroMultiplo] FirePoint encontrado como filho 'FirePoint'.</color>");
+            }
+            else
+            {
+                // Se não encontrar um filho específico, assume que o ponto de disparo é o próprio GameObject da nave.
+                // Isso pode ser ajustado se o seu firePoint tiver uma hierarquia diferente.
+                firePoint = transform; 
+                Debug.LogWarning("<color=orange>[TiroMultiplo] FirePoint não atribuído no Inspector e não encontrado como filho 'FirePoint'. Usando a própria transformação da nave como FirePoint.</color>");
+            }
+        }
     }
 
     private void Update()
@@ -44,13 +68,25 @@ public class TiroMultiplo : MonoBehaviour
 
     public void Atirar()
     {
-        if (sobrecarregado || staminaAtual < custoPorTiro)
+        if (firePoint == null)
+        {
+            Debug.LogError("<color=red>[TiroMultiplo] FirePoint é NULL! Não é possível atirar. Verifique a configuração.</color>");
             return;
+        }
+
+        if (sobrecarregado || staminaAtual < custoPorTiro)
+        {
+            Debug.Log("<color=yellow>[TiroMultiplo] Não é possível atirar: Sobrecarregado ou stamina insuficiente.</color>");
+            return;
+        }
 
         // Consome stamina
         staminaAtual -= custoPorTiro;
         if (staminaAtual < limiteMinimoParaDisparo)
+        {
             sobrecarregado = true;
+            Debug.Log("<color=red>[TiroMultiplo] Nave sobrecarregada! Stamina abaixo do limite.</color>");
+        }
 
         // SISTEMA DE TIRO
         switch (quantidadeTiros)
@@ -82,6 +118,7 @@ public class TiroMultiplo : MonoBehaviour
                 }
                 break;
         }
+        Debug.Log($"<color=blue>[TiroMultiplo] Disparado {quantidadeTiros} tiro(s). Stamina restante: {staminaAtual:F1}</color>");
     }
 
     private void CriarTiro(Vector3 posicao, Vector2 direcao)
@@ -94,7 +131,7 @@ public class TiroMultiplo : MonoBehaviour
         }
         else
         {
-            Debug.LogWarning("Projetil prefab não possui Rigidbody2D.");
+            Debug.LogWarning("Projetil prefab não possui Rigidbody2D. Certifique-se de que o prefab de projétil tenha um Rigidbody2D.");
         }
         Destroy(proj, 3f); // Destrói o projétil após 3 segundos
     }
@@ -102,22 +139,22 @@ public class TiroMultiplo : MonoBehaviour
     public void AumentarTiro()
     {
         quantidadeTiros = Mathf.Min(quantidadeTiros + 1, maxTiros);
-        Debug.Log("Nível de tiro aumentado para: " + quantidadeTiros);
+        Debug.Log("<color=green>[TiroMultiplo] Nível de tiro aumentado para: " + quantidadeTiros + "</color>");
     }
 
     public void ReduzirTiro()
     {
         // Garante que o nível de tiro não caia abaixo do mínimo
         quantidadeTiros = Mathf.Max(quantidadeTiros - 1, minTiros);
-        Debug.Log("Nível de tiro reduzido para: " + quantidadeTiros);
+        Debug.Log("<color=orange>[TiroMultiplo] Nível de tiro reduzido para: " + quantidadeTiros + "</color>");
     }
 
-    // THIS IS THE MISSING METHOD
+    // Método para ser chamado para resetar o sistema de tiro (por exemplo, após Game Over ou início de fase)
     public void ResetTiro()
     {
         quantidadeTiros = minTiros; // Reseta para o nível de tiro inicial
         staminaAtual = staminaMax; // Reseta a stamina para o máximo
         sobrecarregado = false; // Garante que não esteja sobrecarregado
-        Debug.Log("TiroMultiplo: Sistema de tiro resetado para o nível " + minTiros + " e stamina cheia.");
+        Debug.Log("<color=cyan>[TiroMultiplo] Sistema de tiro resetado para o nível " + minTiros + " e stamina cheia.</color>");
     }
 }

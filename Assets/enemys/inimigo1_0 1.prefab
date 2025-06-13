@@ -81,7 +81,7 @@ MonoBehaviour:
   tempoEntreDanos: 1
   destruirAoColidir: 1
   efeitoImpacto: {fileID: 0}
-  somImpacto: {fileID: 0}
+  somImpacto: {fileID: 8300000, guid: 4b4227c923b019148844ebe27f7c7a34, type: 3}
 --- !u!212 &1617366275938212092
 SpriteRenderer:
   m_ObjectHideFlags: 0
