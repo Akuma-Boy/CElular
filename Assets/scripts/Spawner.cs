@@ -1,10 +1,11 @@
 using UnityEngine;
+using System.Linq;
 
 public class Spawner : MonoBehaviour
 {
     [Header("Configurações de Spawn")]
     public GameObject[] prefabsParaSpawnar;
-    public float[] porcentagensSpawn; // Porcentagens para cada prefab (exceto o primeiro)
+    public float[] porcentagensSpawn;
     public float intervaloDeSpawn = 2f;
     public int spawnSimultaneo = 1;
     public float margemDireita = 1f;
@@ -13,14 +14,14 @@ public class Spawner : MonoBehaviour
     [Header("Configurações Avançadas")]
     public bool spawnAoIniciar = true;
     public bool spawnContinuo = true;
+    public int quantidadeMaximaInimigosNaCena = 10;
 
-    private float tempoProximoSpawn;
+    private float tempoDesdeUltimoSpawn = 0f;
     private Camera mainCamera;
 
     private void Start()
     {
         mainCamera = Camera.main;
-        tempoProximoSpawn = Time.time + intervaloDeSpawn; 
 
         if (porcentagensSpawn == null || porcentagensSpawn.Length != Mathf.Max(0, prefabsParaSpawnar.Length - 1))
         {
@@ -29,7 +30,8 @@ public class Spawner : MonoBehaviour
 
         if (spawnAoIniciar)
         {
-            SpawnarObjetos();
+            TentarSpawnarObjetos();
+            tempoDesdeUltimoSpawn = 0f;
         }
     }
 
@@ -51,16 +53,21 @@ public class Spawner : MonoBehaviour
 
     private void Update()
     {
-        // Ensure GameManager.Instance is not null before accessing IsGameActive
-        if (spawnContinuo && Time.time >= tempoProximoSpawn && GameManager.Instance != null && GameManager.Instance.IsGameActive)
+        if (!spawnContinuo) return;
+        if (GameManager.Instance == null || !GameManager.Instance.IsGameActive) return;
+
+        tempoDesdeUltimoSpawn += Time.deltaTime;
+
+        if (tempoDesdeUltimoSpawn >= intervaloDeSpawn)
         {
-            SpawnarObjetos();
-            tempoProximoSpawn = Time.time + intervaloDeSpawn;
-            // Debug.Log($"Spawner: Spawnando {spawnSimultaneo} inimigos. Próximo spawn em {tempoProximoSpawn}");
+            TentarSpawnarObjetos();
+            tempoDesdeUltimoSpawn = 0f; // reseta o contador
+
+            Debug.Log($"Spawn realizado. Intervalo atual: {intervaloDeSpawn:F2}");
         }
     }
 
-    public void SpawnarObjetos()
+    public void TentarSpawnarObjetos()
     {
         if (prefabsParaSpawnar == null || prefabsParaSpawnar.Length == 0)
         {
@@ -68,9 +75,22 @@ public class Spawner : MonoBehaviour
             return;
         }
 
-        for (int i = 0; i < spawnSimultaneo; i++)
+        var inimigosNaCena = FindObjectsByType<MovimentoInimigo>(FindObjectsSortMode.None);
+        int inimigosAtuaisNaCena = inimigosNaCena.Count(e => prefabsParaSpawnar.Any(p => e.name.StartsWith(p.name)));
+
+        if (inimigosAtuaisNaCena < quantidadeMaximaInimigosNaCena)
         {
-            SpawnarInimigo();
+            int quantidadeParaSpawnar = Mathf.Min(spawnSimultaneo, quantidadeMaximaInimigosNaCena - inimigosAtuaisNaCena);
+
+            for (int i = 0; i < quantidadeParaSpawnar; i++)
+            {
+                SpawnarInimigo();
+            }
+            Debug.Log($"Spawnando {quantidadeParaSpawnar} inimigos. Total na cena: {inimigosAtuaisNaCena + quantidadeParaSpawnar}/{quantidadeMaximaInimigosNaCena}");
+        }
+        else
+        {
+            Debug.Log($"Limite de inimigos atingido: {inimigosAtuaisNaCena}/{quantidadeMaximaInimigosNaCena}");
         }
     }
 
@@ -86,12 +106,7 @@ public class Spawner : MonoBehaviour
         if (prefabsParaSpawnar.Length == 1)
             return prefabsParaSpawnar[0];
 
-        float chanceTotal = 0f;
-        for (int i = 0; i < porcentagensSpawn.Length; i++)
-        {
-            chanceTotal += porcentagensSpawn[i];
-        }
-
+        float chanceTotal = porcentagensSpawn.Sum();
         float randomValue = Random.Range(0f, chanceTotal);
         float acumulado = 0f;
 
@@ -109,44 +124,27 @@ public class Spawner : MonoBehaviour
 
     private Vector3 CalcularPosicaoDireita()
     {
-        if (mainCamera == null) // Defensive check
+        if (mainCamera == null)
         {
             mainCamera = Camera.main;
-            if (mainCamera == null)
-            {
-                Debug.LogError("Spawner: Main Camera not found!");
-                return Vector3.zero;
-            }
+            if (mainCamera == null) return transform.position;
         }
 
         float posicaoY = Random.Range(0f, 1f);
-        Vector3 viewportPos = new Vector3(1 + margemDireita, posicaoY, 0);
+        Vector3 viewportPos = new Vector3(1 + margemDireita, posicaoY, mainCamera.nearClipPlane);
         Vector3 worldPos = mainCamera.ViewportToWorldPoint(viewportPos);
         worldPos.y += Random.Range(-variacaoVertical, variacaoVertical);
         worldPos.z = 0;
         return worldPos;
     }
 
-    private void OnDrawGizmosSelected()
+    public void ResetarEstado()
     {
-        if (mainCamera == null)
-            mainCamera = Camera.main;
-
-        if (mainCamera != null)
-        {
-            Vector3 spawnPoint = CalcularPosicaoDireita();
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(spawnPoint, 0.5f);
-            Gizmos.DrawLine(spawnPoint, spawnPoint + Vector3.left * 2f);
-        }
+        tempoDesdeUltimoSpawn = 0f;
     }
 
-    public void ResetarEstado(float intervalo, int quantidade)
+    public void AtualizarIntervalo(float novoIntervalo)
     {
-        intervaloDeSpawn = intervalo;
-        spawnSimultaneo = quantidade;
-        // Always reset next spawn time when state is reset
-        tempoProximoSpawn = Time.time + intervaloDeSpawn; 
-        Debug.Log($"Spawner: Estado resetado. Intervalo={intervalo}, Quantidade={quantidade}, Próximo Spawn={tempoProximoSpawn}");
+        intervaloDeSpawn = novoIntervalo;
     }
 }

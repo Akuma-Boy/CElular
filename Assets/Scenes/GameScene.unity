@@ -292,6 +292,7 @@ GameObject:
   m_Component:
   - component: {fileID: 39966722}
   - component: {fileID: 39966721}
+  - component: {fileID: 39966723}
   m_Layer: 0
   m_Name: spawner (3)
   m_TagString: Spawner
@@ -315,18 +316,19 @@ MonoBehaviour:
   - {fileID: 2721646422547204099, guid: 6108be9a543c89f4db60108b01b3ee37, type: 3}
   - {fileID: 2710874731323103673, guid: 898e842d4ef8d0342a0fc46f7bef5759, type: 3}
   - {fileID: 2721646422547204099, guid: 6108be9a543c89f4db60108b01b3ee37, type: 3}
-  - {fileID: 2721646422547204099, guid: 84bb1581e7130a94f89ebae8531d13f5, type: 3}
+  - {fileID: 2710874731323103673, guid: 898e842d4ef8d0342a0fc46f7bef5759, type: 3}
   - {fileID: 2721646422547204099, guid: 6108be9a543c89f4db60108b01b3ee37, type: 3}
   - {fileID: 6635756102443564652, guid: bc8aa0bbdfa350b478942938bd96a755, type: 3}
   - {fileID: 2721646422547204099, guid: 6108be9a543c89f4db60108b01b3ee37, type: 3}
   - {fileID: 7152282130124921395, guid: 7e4cdc1442b9e924eaf8302ca43b3b1f, type: 3}
   porcentagensSpawn: []
-  intervaloDeSpawn: 6
-  spawnSimultaneo: 4
+  intervaloDeSpawn: 29
+  spawnSimultaneo: 6
   margemDireita: 0.11
   variacaoVertical: 0.2
   spawnAoIniciar: 0
   spawnContinuo: 1
+  quantidadeMaximaInimigosNaCena: 500
 --- !u!4 &39966722
 Transform:
   m_ObjectHideFlags: 0
@@ -336,12 +338,37 @@ Transform:
   m_GameObject: {fileID: 39966720}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -606.3942, y: -1884.066, z: -15.324199}
+  m_LocalPosition: {x: 11.359985, y: -0.5600586, z: -9.1166}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1954133758}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &39966723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 39966720}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0729a05062f12ff4d844264690be3870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptDeSpawner: {fileID: 39966721}
+  intervaloInicial: 29
+  reducaoPorSegundo: 0.01
+  intervaloMinimo: 0.7
+  spawnSimultaneoInicial: 1
+  aumentoSimultaneoPorSegundo: 0.05
+  maximoSimultaneo: 5
+  velocidadeBaseParallax: 1
+  aumentoVelocidadeParallaxPorSegundo: 0.25
+  velocidadeMaximaParallax: 5
+  velocidadeBaseInimigo: 2
+  aumentoVelocidadeInimigoPorSegundo: 0.5
+  velocidadeMaximaInimigo: 15
 --- !u!1 &65987070
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,7 +939,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75f9b5f5cbd4b02469a1d41fb5d42cff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vidaMaxima: 1
+  vidaMaxima: 10
   vidaAtual: 0
   tempoInvencibilidade: 1.5
   aoReceberDano:
@@ -1329,7 +1356,7 @@ MonoBehaviour:
   velocidadeBase: 2
   multiplicadorVelocidade: 5
   habilitarProgressaoAutonoma: 1
-  tempoTotalProgressao: 1000
+  tempoTotalProgressao: 400
   velocidadeMaximaProgressao: 20
   curvaProgressaoVelocidade:
     serializedVersion: 2
@@ -1679,11 +1706,11 @@ Transform:
   m_GameObject: {fileID: 461492853}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -608.3, y: -1884.2, z: -9.973324}
+  m_LocalPosition: {x: 9.454224, y: -0.6939697, z: -3.7657251}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1954133758}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &468224704
 GameObject:
@@ -2660,7 +2687,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &891401402
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3672,6 +3699,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1058977233}
   - component: {fileID: 1058977232}
+  - component: {fileID: 1058977234}
   m_Layer: 0
   m_Name: spawner (2)
   m_TagString: Spawner
@@ -3695,17 +3723,20 @@ MonoBehaviour:
   - {fileID: 2721646422547204099, guid: 6108be9a543c89f4db60108b01b3ee37, type: 3}
   - {fileID: 6176599765784151619, guid: 20afe964b6910bc48855bf43055b402b, type: 3}
   - {fileID: 2721646422547204099, guid: 6108be9a543c89f4db60108b01b3ee37, type: 3}
-  - {fileID: 6176599765784151619, guid: 20afe964b6910bc48855bf43055b402b, type: 3}
+  - {fileID: 2710874731323103673, guid: 898e842d4ef8d0342a0fc46f7bef5759, type: 3}
   - {fileID: 2721646422547204099, guid: 6108be9a543c89f4db60108b01b3ee37, type: 3}
   - {fileID: 2721646422547204099, guid: 6108be9a543c89f4db60108b01b3ee37, type: 3}
   - {fileID: 7152282130124921395, guid: 7e4cdc1442b9e924eaf8302ca43b3b1f, type: 3}
+  - {fileID: 6635756102443564652, guid: bc8aa0bbdfa350b478942938bd96a755, type: 3}
+  - {fileID: 7152282130124921395, guid: 7e4cdc1442b9e924eaf8302ca43b3b1f, type: 3}
   porcentagensSpawn: []
   intervaloDeSpawn: 5
-  spawnSimultaneo: 2
+  spawnSimultaneo: 3
   margemDireita: 0.12
   variacaoVertical: 0.81
   spawnAoIniciar: 0
   spawnContinuo: 1
+  quantidadeMaximaInimigosNaCena: 500
 --- !u!4 &1058977233
 Transform:
   m_ObjectHideFlags: 0
@@ -3715,12 +3746,37 @@ Transform:
   m_GameObject: {fileID: 1058977231}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -604.3242, y: -1884.766, z: -15.324199}
+  m_LocalPosition: {x: 13.429993, y: -1.2600098, z: -9.1166}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1954133758}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1058977234
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058977231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0729a05062f12ff4d844264690be3870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptDeSpawner: {fileID: 1058977232}
+  intervaloInicial: 5
+  reducaoPorSegundo: 0.01
+  intervaloMinimo: 0.7
+  spawnSimultaneoInicial: 1
+  aumentoSimultaneoPorSegundo: 0.05
+  maximoSimultaneo: 5
+  velocidadeBaseParallax: 1
+  aumentoVelocidadeParallaxPorSegundo: 0.25
+  velocidadeMaximaParallax: 5
+  velocidadeBaseInimigo: 2
+  aumentoVelocidadeInimigoPorSegundo: 0.5
+  velocidadeMaximaInimigo: 15
 --- !u!1 &1075616924
 GameObject:
   m_ObjectHideFlags: 0
@@ -4253,7 +4309,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1214508562}
-  - component: {fileID: 1214508561}
   - component: {fileID: 1214508563}
   - component: {fileID: 1214508564}
   - component: {fileID: 1214508565}
@@ -4264,31 +4319,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1214508561
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1214508560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 899dbca833c299d4c89bd561887faa75, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tempoTotal: 1000
-  intervaloMinimoSpawn: 0.3
-  intervaloMaximoSpawn: 2
-  quantidadeMinimaSpawn: 1
-  quantidadeMaximaSpawn: 3
-  aumentarVelocidadeInimigos: 1
-  multiplicadorCrescimentoVelocidade: 7
-  velocidadeMinimaInimigo: 2
-  velocidadeMaximaInimigo: 15
-  aumentarVelocidadeParallax: 1
-  parallaxVelocidadeMinima: 2
-  parallaxVelocidadeMaxima: 20
-  multiplicadorCrescimentoParallax: 7
 --- !u!4 &1214508562
 Transform:
   m_ObjectHideFlags: 0
@@ -4316,7 +4346,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 291c19debc6f2224a8d5e01bd1d5f488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dificuldadeProgressivaInstance: {fileID: 1214508561}
+  dificuldadeProgressivaInstance: {fileID: 0}
   scoreManagerInstance: {fileID: 1147167274}
   menuSceneName: Menu
   gameSceneName: GameScene
@@ -4613,7 +4643,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -196, y: -55}
+  m_AnchoredPosition: {x: 194, y: -55}
   m_SizeDelta: {x: 307.7293, y: 27.729492}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1245743037
@@ -4668,6 +4698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1257395993}
   - component: {fileID: 1257395992}
+  - component: {fileID: 1257395994}
   m_Layer: 0
   m_Name: spawner (1)
   m_TagString: Spawner
@@ -4692,15 +4723,16 @@ MonoBehaviour:
   - {fileID: 2721646422547204099, guid: 84bb1581e7130a94f89ebae8531d13f5, type: 3}
   - {fileID: 2721646422547204099, guid: 6108be9a543c89f4db60108b01b3ee37, type: 3}
   - {fileID: 2721646422547204099, guid: 84bb1581e7130a94f89ebae8531d13f5, type: 3}
-  - {fileID: 2721646422547204099, guid: 84bb1581e7130a94f89ebae8531d13f5, type: 3}
+  - {fileID: 2710874731323103673, guid: 898e842d4ef8d0342a0fc46f7bef5759, type: 3}
   - {fileID: 7152282130124921395, guid: 7e4cdc1442b9e924eaf8302ca43b3b1f, type: 3}
   porcentagensSpawn: []
-  intervaloDeSpawn: 4
-  spawnSimultaneo: 1
+  intervaloDeSpawn: 7
+  spawnSimultaneo: 2
   margemDireita: 0.1
   variacaoVertical: 1
-  spawnAoIniciar: 0
+  spawnAoIniciar: 1
   spawnContinuo: 1
+  quantidadeMaximaInimigosNaCena: 500
 --- !u!4 &1257395993
 Transform:
   m_ObjectHideFlags: 0
@@ -4710,12 +4742,37 @@ Transform:
   m_GameObject: {fileID: 1257395991}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -606.1042, y: -1883.9559, z: -15.324199}
+  m_LocalPosition: {x: 11.650024, y: -0.44995117, z: -9.1166}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1954133758}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1257395994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257395991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0729a05062f12ff4d844264690be3870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptDeSpawner: {fileID: 1257395992}
+  intervaloInicial: 7
+  reducaoPorSegundo: 0.01
+  intervaloMinimo: 0.7
+  spawnSimultaneoInicial: 1
+  aumentoSimultaneoPorSegundo: 0.05
+  maximoSimultaneo: 5
+  velocidadeBaseParallax: 1
+  aumentoVelocidadeParallaxPorSegundo: 0.25
+  velocidadeMaximaParallax: 5
+  velocidadeBaseInimigo: 2
+  aumentoVelocidadeInimigoPorSegundo: 0.5
+  velocidadeMaximaInimigo: 15
 --- !u!1 &1303279951
 GameObject:
   m_ObjectHideFlags: 0
@@ -10751,7 +10808,7 @@ MonoBehaviour:
   velocidadeBase: 2
   multiplicadorVelocidade: 5
   habilitarProgressaoAutonoma: 1
-  tempoTotalProgressao: 1000
+  tempoTotalProgressao: 400
   velocidadeMaximaProgressao: 20
   curvaProgressaoVelocidade:
     serializedVersion: 2
@@ -10864,6 +10921,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1936700804}
   - component: {fileID: 1936700803}
+  - component: {fileID: 1936700805}
   m_Layer: 0
   m_Name: spawner
   m_TagString: Spawner
@@ -10890,13 +10948,16 @@ MonoBehaviour:
   - {fileID: 2721646422547204099, guid: 84bb1581e7130a94f89ebae8531d13f5, type: 3}
   - {fileID: 2710874731323103673, guid: 898e842d4ef8d0342a0fc46f7bef5759, type: 3}
   - {fileID: 6176599765784151619, guid: 20afe964b6910bc48855bf43055b402b, type: 3}
+  - {fileID: 6635756102443564652, guid: bc8aa0bbdfa350b478942938bd96a755, type: 3}
+  - {fileID: 6635756102443564652, guid: bc8aa0bbdfa350b478942938bd96a755, type: 3}
   porcentagensSpawn: []
-  intervaloDeSpawn: 3
-  spawnSimultaneo: 1
+  intervaloDeSpawn: 10
+  spawnSimultaneo: 3
   margemDireita: 0.1
   variacaoVertical: 0.38
   spawnAoIniciar: 1
   spawnContinuo: 1
+  quantidadeMaximaInimigosNaCena: 500
 --- !u!4 &1936700804
 Transform:
   m_ObjectHideFlags: 0
@@ -10906,12 +10967,37 @@ Transform:
   m_GameObject: {fileID: 1936700802}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -606.6942, y: -1881.736, z: -15.324199}
+  m_LocalPosition: {x: 11.059998, y: 1.7700195, z: -9.1166}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1954133758}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1936700805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1936700802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0729a05062f12ff4d844264690be3870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scriptDeSpawner: {fileID: 1936700803}
+  intervaloInicial: 10
+  reducaoPorSegundo: 0.01
+  intervaloMinimo: 0.7
+  spawnSimultaneoInicial: 1
+  aumentoSimultaneoPorSegundo: 0.05
+  maximoSimultaneo: 5
+  velocidadeBaseParallax: 2
+  aumentoVelocidadeParallaxPorSegundo: 10
+  velocidadeMaximaParallax: 100
+  velocidadeBaseInimigo: 2
+  aumentoVelocidadeInimigoPorSegundo: 0.5
+  velocidadeMaximaInimigo: 15
 --- !u!1 &1945905456
 GameObject:
   m_ObjectHideFlags: 0
@@ -11072,12 +11158,7 @@ Transform:
   m_LocalPosition: {x: 617.7542, y: 1883.506, z: 6.2075987}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1936700804}
-  - {fileID: 1257395993}
-  - {fileID: 1058977233}
-  - {fileID: 39966722}
-  - {fileID: 461492855}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1966025319
@@ -11836,5 +11917,10 @@ SceneRoots:
   - {fileID: 1723471489}
   - {fileID: 1431888487}
   - {fileID: 1954133758}
+  - {fileID: 1936700804}
+  - {fileID: 1257395993}
+  - {fileID: 1058977233}
+  - {fileID: 39966722}
+  - {fileID: 461492855}
   - {fileID: 2110237204}
   - {fileID: 10438999}

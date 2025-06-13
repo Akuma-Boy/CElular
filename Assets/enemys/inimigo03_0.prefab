@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: -7511741786845018712}
   - component: {fileID: -7181737766933211607}
   - component: {fileID: -2029212312044031571}
+  - component: {fileID: 1354700730913349856}
   m_Layer: 7
   m_Name: inimigo03_0
   m_TagString: Inimigo
@@ -261,3 +262,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pointsWhenDestroyed: 50
+--- !u!114 &1354700730913349856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6635756102443564652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 430408cceaaefb845a2f4836b427a8d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidade: 10
+  tempoVida: 10
+  dano: 1

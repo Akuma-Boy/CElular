@@ -71,6 +71,7 @@
     <Compile Include="Assets\scripts\player\VidaNave.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\scripts\GameOverUI.cs" />
+    <Compile Include="Assets\scripts\player\AceleradorDeSpawn.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\enemys\InimigoDanoContato.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark02.cs" />

@@ -2,7 +2,12 @@ using UnityEngine;
 
 public class MovimentoInimigo : MonoBehaviour
 {
-    public float velocidade = 3f; // Initial value, will be overridden by DificuldadeProgressiva
+    public float velocidade = 3f;
+
+    public void SetVelocidade(float novaVelocidade)
+    {
+        velocidade = novaVelocidade;
+    }
 
     void Update()
     {

@@ -1,4 +1,3 @@
-// DificuldadeProgressiva.cs (mantendo o código anterior com as pequenas modificações)
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,13 +20,20 @@ public class DificuldadeProgressiva : MonoBehaviour
     [SerializeField] private float velocidadeMinimaInimigo = 2f;
     [SerializeField] private float velocidadeMaximaInimigo = 6f;
 
+    // Novo: Configurações para o aumento da quantidade de inimigos
+    [Header("Configurações de Quantidade de Inimigos")]
+    [SerializeField] private bool aumentarQuantidadeInimigos = true;
+    [SerializeField] private int quantidadeInimigosMinimaGlobal = 5; // Quantidade inicial de inimigos no total na tela
+    [SerializeField] private int quantidadeInimigosMaximaGlobal = 20; // Quantidade máxima de inimigos no total na tela
+    [SerializeField] private float multiplicadorCrescimentoQuantidade = 1.5f; // Quão rápido a quantidade total aumenta
+
     [Header("Configurações do Parallax")]
     [SerializeField] private bool aumentarVelocidadeParallax = true;
     [SerializeField] private float parallaxVelocidadeMinima = 1f;
     [SerializeField] private float parallaxVelocidadeMaxima = 5f;
     [SerializeField] private float multiplicadorCrescimentoParallax = 2f;
 
-    private List<Spawner> spawners = new List<Spawner>(); 
+    private List<Spawner> spawners = new List<Spawner>();
     private List<ParallaxBackground> parallaxLayers = new List<ParallaxBackground>();
     private float tempoAtualJogo;
     public bool EstaAtivo { get; set; } // Esta será controlada pelo GameManager e pelo próprio script
@@ -48,6 +54,19 @@ public class DificuldadeProgressiva : MonoBehaviour
         float calculatedSpeed = Mathf.Lerp(velocidadeMinimaInimigo, velocidadeMaximaInimigo, progresso * multiplicadorCrescimentoVelocidade);
         return Mathf.Clamp(calculatedSpeed, velocidadeMinimaInimigo, velocidadeMaximaInimigo);
     }
+
+    // Novo método para obter a quantidade atual de inimigos na tela
+    public int GetCurrentEnemyQuantity()
+    {
+        if (!EstaAtivo)
+        {
+            return quantidadeInimigosMinimaGlobal;
+        }
+        float progresso = ProgressoNormalizado;
+        float calculatedQuantity = Mathf.Lerp(quantidadeInimigosMinimaGlobal, quantidadeInimigosMaximaGlobal, progresso * multiplicadorCrescimentoQuantidade);
+        return Mathf.RoundToInt(Mathf.Clamp(calculatedQuantity, quantidadeInimigosMinimaGlobal, quantidadeInimigosMaximaGlobal));
+    }
+
 
     private void Awake()
     {
@@ -70,7 +89,7 @@ public class DificuldadeProgressiva : MonoBehaviour
     {
         Debug.Log("<color=cyan>DificuldadeProgressiva: OnEnable - Subscribing to SceneManager and GameManager events.</color>");
         SceneManager.sceneLoaded += OnSceneLoaded;
-        
+
         // Tenta se inscrever imediatamente, ou usa a coroutine se o GameManager ainda não estiver pronto
         if (GameManager.Instance != null)
         {
@@ -80,7 +99,7 @@ public class DificuldadeProgressiva : MonoBehaviour
         }
         else
         {
-            StartCoroutine(SubscribeToGameManagerEventsDelayed()); 
+            StartCoroutine(SubscribeToGameManagerEventsDelayed());
         }
     }
 
@@ -101,7 +120,7 @@ public class DificuldadeProgressiva : MonoBehaviour
         Debug.Log("<color=cyan>DificuldadeProgressiva: OnDisable - Unsubscribing from SceneManager and GameManager events.</color>");
         SceneManager.sceneLoaded -= OnSceneLoaded;
 
-        if (GameManager.Instance != null) 
+        if (GameManager.Instance != null)
         {
             GameManager.OnGameStart -= OnGameStartHandler;
             GameManager.OnGameOver -= OnGameOverHandler;
@@ -121,13 +140,13 @@ public class DificuldadeProgressiva : MonoBehaviour
         tempoAtualJogo = 0f; // Reseta o tempo para o início do jogo
 
         // Garante que a reinicialização dos objetos da cena ocorra após o Start de todos eles.
-        StartCoroutine(DelayedReinitializeSceneObjects()); 
+        StartCoroutine(DelayedReinitializeSceneObjects());
     }
 
     private IEnumerator DelayedReinitializeSceneObjects()
     {
         // Espera um frame para garantir que todos os objetos da nova cena completaram seus Awakes e Starts.
-        yield return null; 
+        yield return null;
 
         ReinitializeSceneObjects(); // Agora é seguro encontrar e aplicar as configurações
     }
@@ -144,7 +163,7 @@ public class DificuldadeProgressiva : MonoBehaviour
         if (GameManager.Instance != null && scene.name == GameManager.Instance.gameSceneName)
         {
             Debug.Log($"<color=green>DificuldadeProgressiva: Cenário de jogo '{scene.name}' carregado. Verificando estado do GameManager e ativando progressão se o jogo estiver ativo.</color>");
-            
+
             // É CRÍTICO que o GameManager.IsGameActive seja TRUE neste ponto para a primeira run
             if (GameManager.Instance.IsGameActive)
             {
@@ -156,7 +175,7 @@ public class DificuldadeProgressiva : MonoBehaviour
                 // Se a cena do jogo carregou mas o GameManager diz que o jogo NÃO está ativo
                 // (ex: talvez carregou a cena do jogo diretamente no editor sem passar pelo menu)
                 // então não ativa a progressão.
-                EstaAtivo = false; 
+                EstaAtivo = false;
                 Debug.LogWarning("<color=orange>DificuldadeProgressiva: Cena de jogo carregada, mas GameManager.IsGameActive é FALSE. Dificuldade permanecerá desativada por enquanto.</color>");
             }
         }
@@ -165,7 +184,7 @@ public class DificuldadeProgressiva : MonoBehaviour
             // Para outras cenas (ex: Menu), garante que está desativado e limpa listas
             spawners.Clear();
             parallaxLayers.Clear();
-            EstaAtivo = false; 
+            EstaAtivo = false;
             Debug.Log($"<color=blue>DificuldadeProgressiva: Cena '{scene.name}' carregada (Não é a cena do jogo). Dificuldade desativada. EstaAtivo: {EstaAtivo}</color>");
         }
     }
@@ -196,16 +215,16 @@ public class DificuldadeProgressiva : MonoBehaviour
     private void ApplyInitialDifficultySettings()
     {
         Debug.Log("<color=yellow>DificuldadeProgressiva: Aplicando configurações iniciais (Spawner, Inimigos e Parallax) *AGORA*.</color>");
-        
+
         foreach (var spawner in spawners)
         {
             if (spawner != null)
             {
                 spawner.intervaloDeSpawn = intervaloMaximoSpawn;
                 spawner.spawnSimultaneo = quantidadeMinimaSpawn;
-                // Debug.Log($"<color=yellow>  Spawner '{spawner.name}' resetado para Intervalo: {intervaloMaximoSpawn}, Quantidade: {quantidadeMinimaSpawn}</color>");
+                // Debug.Log($"<color=yellow>  Spawner '{spawner.name}' resetado para Intervalo: {intervaloMaximoSpawn}, Quantidade: {quantidadeMinimaSpawn}</color>");
             }
-            else Debug.LogWarning("<color=orange>  DificuldadeProgressiva: Spawner NULL na lista durante ApplyInitialDifficultySettings.</color>");
+            else Debug.LogWarning("<color=orange>  DificuldadeProgressiva: Spawner NULL na lista durante ApplyInitialDifficultySettings.</color>");
         }
 
         if (aumentarVelocidadeInimigos)
@@ -216,9 +235,9 @@ public class DificuldadeProgressiva : MonoBehaviour
                 if (inimigo != null)
                 {
                     inimigo.velocidade = velocidadeMinimaInimigo;
-                    // Debug.Log($"<color=yellow>  Inimigo '{inimigo.name}' velocidade inicial definida para: {velocidadeMinimaInimigo}</color>");
+                    // Debug.Log($"<color=yellow>  Inimigo '{inimigo.name}' velocidade inicial definida para: {velocidadeMinimaInimigo}</color>");
                 }
-                else Debug.LogWarning("<color=orange>  DificuldadeProgressiva: MovimentoInimigo NULL na lista de inimigos existentes.</color>");
+                else Debug.LogWarning("<color=orange>  DificuldadeProgressiva: MovimentoInimigo NULL na lista de inimigos existentes.</color>");
             }
         }
 
@@ -228,10 +247,10 @@ public class DificuldadeProgressiva : MonoBehaviour
             {
                 if (parallax != null)
                 {
-                    parallax.ResetParallax(parallaxVelocidadeMinima); 
-                    // Debug.Log($"<color=yellow>  Parallax '{parallax.name}' resetado para velocidade: {parallaxVelocidadeMinima}</color>");
+                    parallax.ResetParallax(parallaxVelocidadeMinima);
+                    // Debug.Log($"<color=yellow>  Parallax '{parallax.name}' resetado para velocidade: {parallaxVelocidadeMinima}</color>");
                 }
-                else Debug.LogWarning("<color=orange>  DificuldadeProgressiva: Parallax NULL na lista durante ApplyInitialDifficultySettings.</color>");
+                else Debug.LogWarning("<color=orange>  DificuldadeProgressiva: Parallax NULL na lista durante ApplyInitialDifficultySettings.</color>");
             }
         }
     }
@@ -245,10 +264,10 @@ public class DificuldadeProgressiva : MonoBehaviour
 
         tempoAtualJogo += Time.deltaTime;
         float progresso = ProgressoNormalizado;
-        
+
         // --- Update Spawner settings ---
         float novoIntervalo = Mathf.Lerp(intervaloMaximoSpawn, intervaloMinimoSpawn, progresso);
-        int novaQuantidade = Mathf.RoundToInt(Mathf.Lerp(quantidadeMinimaSpawn, quantidadeMaximaSpawn, progresso));
+        int novaQuantidadeSpawnSimultaneo = Mathf.RoundToInt(Mathf.Lerp(quantidadeMinimaSpawn, quantidadeMaximaSpawn, progresso));
 
         if (spawners.Count > 0)
         {
@@ -257,7 +276,12 @@ public class DificuldadeProgressiva : MonoBehaviour
                 if (spawner != null)
                 {
                     spawner.intervaloDeSpawn = novoIntervalo;
-                    spawner.spawnSimultaneo = novaQuantidade;
+                    spawner.spawnSimultaneo = novaQuantidadeSpawnSimultaneo;
+                    // Novo: Ajusta a quantidade total de inimigos que o spawner deve tentar manter na cena.
+                    if (aumentarQuantidadeInimigos)
+                    {
+                        spawner.quantidadeMaximaInimigosNaCena = GetCurrentEnemyQuantity();
+                    }
                 }
             }
         }
@@ -267,9 +291,9 @@ public class DificuldadeProgressiva : MonoBehaviour
         // --- Update Enemy Speed ---
         if (aumentarVelocidadeInimigos)
         {
-            float novaVelocidadeInimigo = GetCurrentEnemySpeed(); 
+            float novaVelocidadeInimigo = GetCurrentEnemySpeed();
             MovimentoInimigo[] inimigosAtivos = FindObjectsByType<MovimentoInimigo>(FindObjectsSortMode.None);
-            
+
             if (inimigosAtivos.Length > 0)
             {
                 foreach (var inimigo in inimigosAtivos)
