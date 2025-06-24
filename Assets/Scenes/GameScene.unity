@@ -364,10 +364,10 @@ MonoBehaviour:
   aumentoSimultaneoPorSegundo: 0.05
   maximoSimultaneo: 5
   velocidadeBaseParallax: 1
-  aumentoVelocidadeParallaxPorSegundo: 0.25
-  velocidadeMaximaParallax: 5
+  aumentoVelocidadeParallaxPorSegundo: 0.5
+  velocidadeMaximaParallax: 100
   velocidadeBaseInimigo: 2
-  aumentoVelocidadeInimigoPorSegundo: 0.5
+  aumentoVelocidadeInimigoPorSegundo: 0.2
   velocidadeMaximaInimigo: 15
 --- !u!1 &65987070
 GameObject:
@@ -480,8 +480,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1672.5984, y: -599.00006}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -1511.2023, y: -526.1317}
+  m_SizeDelta: {x: 263.6256, y: 46.1487}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &108747077
 MonoBehaviour:
@@ -564,7 +564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.13333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2194,7 +2194,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 242.00995, y: -52.66992}
+  m_AnchoredPosition: {x: 242.00977, y: -52.66992}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &558447986
@@ -3770,11 +3770,11 @@ MonoBehaviour:
   spawnSimultaneoInicial: 1
   aumentoSimultaneoPorSegundo: 0.05
   maximoSimultaneo: 5
-  velocidadeBaseParallax: 1
-  aumentoVelocidadeParallaxPorSegundo: 0.25
-  velocidadeMaximaParallax: 5
+  velocidadeBaseParallax: 2
+  aumentoVelocidadeParallaxPorSegundo: 0.5
+  velocidadeMaximaParallax: 100
   velocidadeBaseInimigo: 2
-  aumentoVelocidadeInimigoPorSegundo: 0.5
+  aumentoVelocidadeInimigoPorSegundo: 0.2
   velocidadeMaximaInimigo: 15
 --- !u!1 &1075616924
 GameObject:
@@ -3811,7 +3811,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 133.80975, y: -79.21997}
+  m_AnchoredPosition: {x: 133.80957, y: -79.21997}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1075616926
@@ -4045,8 +4045,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1508, y: -433.00006}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -1240, y: -270.7757}
+  m_SizeDelta: {x: 246.1262, y: 49.4298}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1162731352
 MonoBehaviour:
@@ -4129,7 +4129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.13333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4190,8 +4190,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1675.5984, y: -256}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -1516.1453, y: 1.5015}
+  m_SizeDelta: {x: 263.6256, y: 46.1487}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1199927860
 MonoBehaviour:
@@ -4274,7 +4274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.13333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4764,13 +4764,13 @@ MonoBehaviour:
   reducaoPorSegundo: 0.01
   intervaloMinimo: 0.7
   spawnSimultaneoInicial: 1
-  aumentoSimultaneoPorSegundo: 0.05
-  maximoSimultaneo: 5
-  velocidadeBaseParallax: 1
-  aumentoVelocidadeParallaxPorSegundo: 0.25
-  velocidadeMaximaParallax: 5
+  aumentoSimultaneoPorSegundo: 0.02
+  maximoSimultaneo: 7
+  velocidadeBaseParallax: 2
+  aumentoVelocidadeParallaxPorSegundo: 0.5
+  velocidadeMaximaParallax: 100
   velocidadeBaseInimigo: 2
-  aumentoVelocidadeInimigoPorSegundo: 0.5
+  aumentoVelocidadeInimigoPorSegundo: 0.2
   velocidadeMaximaInimigo: 15
 --- !u!1 &1303279951
 GameObject:
@@ -10093,8 +10093,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1843, y: -430.4527}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -1791.9662, y: -266.85712}
+  m_SizeDelta: {x: 246.1262, y: 49.4298}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1466620196
 MonoBehaviour:
@@ -10177,7 +10177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.13333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11055,13 +11055,13 @@ MonoBehaviour:
   reducaoPorSegundo: 0.01
   intervaloMinimo: 0.7
   spawnSimultaneoInicial: 1
-  aumentoSimultaneoPorSegundo: 0.05
-  maximoSimultaneo: 5
+  aumentoSimultaneoPorSegundo: 0.02
+  maximoSimultaneo: 7
   velocidadeBaseParallax: 2
-  aumentoVelocidadeParallaxPorSegundo: 10
+  aumentoVelocidadeParallaxPorSegundo: 0.5
   velocidadeMaximaParallax: 100
   velocidadeBaseInimigo: 2
-  aumentoVelocidadeInimigoPorSegundo: 0.5
+  aumentoVelocidadeInimigoPorSegundo: 0.2
   velocidadeMaximaInimigo: 15
 --- !u!1 &1945905456
 GameObject:
@@ -11379,7 +11379,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1992777728
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11691,14 +11691,14 @@ RectTransform:
   m_GameObject: {fileID: 2076175048}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.06682536, y: 0.09822355, z: 0.020484127}
+  m_LocalScale: {x: 0.08102575, y: 0.12032385, z: 0.020484127}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 891401402}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 8.3, y: -44.9}
+  m_AnchoredPosition: {x: 8.6, y: -47.4}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2076175050
@@ -11868,7 +11868,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 31.1, y: -34.2}
+  m_AnchoredPosition: {x: 31.2, y: -30.2}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2122245377
